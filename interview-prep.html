@@ -1392,10 +1392,29 @@ NonNullable&lt;T&gt; // Remove null | undefined — for values confirmed to exis
 
 <!-- Download Button -->
 <div class="download-bar">
-  <button class="dl-btn" onclick="window.print()">⬇ Save as PDF</button>
+  <button class="dl-btn" id="dl-btn" onclick="downloadPDF()">&#11015; Save as PDF</button>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" crossorigin="anonymous"></script>
+
 <script>
+  function downloadPDF() {
+    const btn = document.getElementById('dl-btn');
+    btn.textContent = '⏳ Generating...';
+    btn.disabled = true;
+    const opt = {
+      margin: [0.4, 0.4],
+      filename: 'parth-lashkari-interview-prep.pdf',
+      image: { type: 'jpeg', quality: 0.97 },
+      html2canvas: { scale: 2, useCORS: true, logging: false },
+      jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' },
+      pagebreak: { mode: ['css', 'legacy'] }
+    };
+    html2pdf().set(opt).from(document.querySelector('.main')).save()
+      .then(() => { btn.textContent = '\u2B07 Save as PDF'; btn.disabled = false; })
+      .catch(() => { btn.textContent = '\u2B07 Save as PDF'; btn.disabled = false; });
+  }
+
   // Highlight active section in sidebar
   const sections = document.querySelectorAll('section[id], div[id]');
   const links = document.querySelectorAll('.toc-section a');
