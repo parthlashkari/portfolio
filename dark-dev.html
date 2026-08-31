@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Parth Lashkari – Lead Frontend Engineer. React.js, TypeScript, Next.js expert with 5.6+ years building enterprise web applications.">
+  <meta name="description" content="Parth Lashkari â€“ Lead Frontend Engineer. React.js, TypeScript, Next.js expert with 5.6+ years building enterprise web applications.">
   <title>Parth Lashkari | Lead Frontend Engineer</title>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
@@ -20,7 +20,7 @@
     ::-webkit-scrollbar-track { background: var(--bg); }
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
 
-    /* ── NAV ── */
+    /* â”€â”€ NAV â”€â”€ */
     nav {
       position: fixed; top: 0; width: 100%; z-index: 1000;
       padding: 0 2.5rem; height: 64px;
@@ -42,7 +42,7 @@
     }
     .nav-cta:hover { background: rgba(88,166,255,0.1); }
 
-    /* ── HERO ── */
+    /* â”€â”€ HERO â”€â”€ */
     #hero {
       position: relative; min-height: 100vh;
       display: flex; align-items: center; justify-content: center; overflow: hidden;
@@ -79,19 +79,19 @@
     }
     @keyframes bob { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(8px)} }
 
-    /* ── SECTION LAYOUT ── */
+    /* â”€â”€ SECTION LAYOUT â”€â”€ */
     .section-wrap { padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; }
     .section-label { font-family: 'Fira Code', monospace; font-size: 0.78rem; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 0.5rem; }
     .section-title { font-size: 2rem; font-weight: 700; }
     .section-rule { width: 48px; height: 2px; background: var(--accent); margin-top: 0.75rem; }
 
-    /* ── AOS ── */
+    /* â”€â”€ AOS â”€â”€ */
     .aos { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
     .aos.visible { opacity: 1; transform: none; }
     .aos-r { opacity: 0; transform: translateX(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
     .aos-r.visible { opacity: 1; transform: none; }
 
-    /* ── ABOUT ── */
+    /* â”€â”€ ABOUT â”€â”€ */
     .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
     .about-text p { color: var(--text2); line-height: 1.8; margin-bottom: 1rem; }
     .about-text strong { color: var(--text); }
@@ -108,7 +108,7 @@
     .t-body { padding: 1rem 1.25rem; font-family: 'Fira Code', monospace; font-size: 0.8rem; line-height: 2; }
     .tk { color: var(--purple); } .tv { color: var(--orange); } .ts { color: var(--accent); } .tc { color: var(--text); } .td { color: var(--text2); }
 
-    /* ── SKILLS ── */
+    /* â”€â”€ SKILLS â”€â”€ */
     .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
     .skill-cat-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem; transition: border-color 0.3s; }
     .skill-cat-card:hover { border-color: rgba(88,166,255,0.4); }
@@ -117,7 +117,7 @@
     .tag { background: var(--bg3); border: 1px solid var(--border); color: var(--text2); padding: 4px 12px; border-radius: 20px; font-size: 0.78rem; transition: all 0.2s; cursor: default; }
     .tag:hover, .tag.hot { border-color: rgba(88,166,255,0.5); color: var(--accent); background: rgba(88,166,255,0.07); }
 
-    /* ── TIMELINE ── */
+    /* â”€â”€ TIMELINE â”€â”€ */
     .timeline { position: relative; padding-left: 40px; }
     .timeline::before { content:''; position:absolute; left:12px; top:0; bottom:0; width:1px; background:var(--border); }
     .tl-item { position: relative; margin-bottom: 2.5rem; }
@@ -131,12 +131,12 @@
     .tl-period { font-family:'Fira Code',monospace; font-size:0.78rem; color:var(--text2); background:var(--bg3); padding:3px 10px; border-radius:4px; white-space:nowrap; }
     .tl-bullets { list-style:none; margin-top:0.75rem; }
     .tl-bullets li { color:var(--text2); font-size:0.875rem; line-height:1.7; padding-left:1.25rem; position:relative; margin-bottom:0.35rem; }
-    .tl-bullets li::before { content:'▸'; position:absolute; left:0; color:var(--green); }
+    .tl-bullets li::before { content:'â–¸'; position:absolute; left:0; color:var(--green); }
     .tl-bullets strong { color:var(--text); }
     .tl-tags { display:flex; flex-wrap:wrap; gap:0.4rem; margin-top:1rem; }
     .tl-tag { background:rgba(88,166,255,0.08); border:1px solid rgba(88,166,255,0.2); color:var(--accent); padding:2px 8px; border-radius:4px; font-size:0.72rem; font-family:'Fira Code',monospace; }
 
-    /* ── PROJECTS ── */
+    /* â”€â”€ PROJECTS â”€â”€ */
     .projects-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); gap:1.5rem; }
     .proj-card { background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:1.5rem; display:flex; flex-direction:column; gap:0.9rem; transition:border-color 0.3s, transform 0.3s; }
     .proj-card:hover { border-color:var(--accent); transform:translateY(-4px); }
@@ -149,7 +149,7 @@
     .proj-stack { display:flex; flex-wrap:wrap; gap:0.4rem; }
     .stk { font-size:0.72rem; color:var(--purple); background:rgba(188,140,255,0.08); border:1px solid rgba(188,140,255,0.2); padding:2px 8px; border-radius:4px; font-family:'Fira Code',monospace; }
 
-    /* ── AWARDS ── */
+    /* â”€â”€ AWARDS â”€â”€ */
     .awards-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); gap:1.5rem; }
     .aw-card { background:linear-gradient(135deg, var(--bg2), rgba(88,166,255,0.04)); border:1px solid var(--border); border-radius:10px; padding:1.5rem; transition:border-color 0.3s; position:relative; overflow:hidden; }
     .aw-card:hover { border-color:var(--orange); }
@@ -159,7 +159,7 @@
     .aw-org { font-size:0.875rem; color:var(--orange); font-weight:600; margin-bottom:0.5rem; }
     .aw-desc { font-size:0.8rem; color:var(--text2); line-height:1.65; }
 
-    /* ── CONTACT ── */
+    /* â”€â”€ CONTACT â”€â”€ */
     .contact-center { text-align:center; max-width:580px; margin:0 auto; }
     .contact-title { font-size:2.5rem; font-weight:900; margin-bottom:1rem; }
     .contact-sub { color:var(--text2); line-height:1.8; margin-bottom:2.5rem; }
@@ -198,7 +198,7 @@
 <div id="hero">
   <canvas id="particles"></canvas>
   <div class="hero-content">
-    <span class="hero-tag">👋 Hello, World! I'm</span>
+    <span class="hero-tag">ðŸ‘‹ Hello, World! I'm</span>
     <h1 class="hero-title">Parth Lashkari</h1>
     <div class="hero-typed"><span id="typed-text"></span><span class="cursor"></span></div>
     <p class="hero-desc">
@@ -210,7 +210,7 @@
       <a href="#contact" class="btn-ghost">Get In Touch</a>
     </div>
   </div>
-  <div class="scroll-hint"><span>scroll</span><span>↓</span></div>
+  <div class="scroll-hint"><span>scroll</span><span>â†“</span></div>
 </div>
 
 <!-- ABOUT -->
@@ -223,13 +223,13 @@
   <div class="about-grid">
     <div class="about-text aos">
       <p>I'm a <strong>Lead Frontend Engineer</strong> at a leading enterprise software company, where I architect enterprise web applications used by global clients. With <strong>5.6+ years</strong> of experience, I've progressed from shipping my first React component to leading frontend architecture and mentoring teams.</p>
-      <p>My expertise spans <strong>React.js, TypeScript, and Next.js</strong> — building component libraries, eliminating performance bottlenecks, and enforcing code quality through rigorous reviews. I built a reusable library of <strong>50+ production-grade components</strong> and migrated our entire stack from MUI v4 to v5/v7.</p>
-      <p>I believe in writing code that doesn't just work today — it <strong>scales, performs, and survives</strong> the next three product pivots.</p>
+      <p>My expertise spans <strong>React.js, TypeScript, and Next.js</strong> â€” building component libraries, eliminating performance bottlenecks, and enforcing code quality through rigorous reviews. I built a reusable library of <strong>50+ production-grade components</strong> and migrated our entire stack from MUI v4 to v5/v7.</p>
+      <p>I believe in writing code that doesn't just work today â€” it <strong>scales, performs, and survives</strong> the next three product pivots.</p>
       <div class="stats-row">
         <div class="stat-card"><div class="stat-num">5.6+</div><div class="stat-lbl">Years of Experience</div></div>
         <div class="stat-card"><div class="stat-num">50+</div><div class="stat-lbl">UI Components Built</div></div>
         <div class="stat-card"><div class="stat-num">35%</div><div class="stat-lbl">Perf Improvement</div></div>
-        <div class="stat-card"><div class="stat-num">3×</div><div class="stat-lbl">Top Award Winner</div></div>
+        <div class="stat-card"><div class="stat-num">3Ã—</div><div class="stat-lbl">Top Award Winner</div></div>
       </div>
     </div>
     <div class="aos-r">
@@ -242,13 +242,13 @@
           <div><span class="tk">const</span> <span class="tc">engineer</span> = {</div>
           <div>&nbsp;&nbsp;<span class="tk">name:</span> <span class="ts">"Parth Lashkari"</span>,</div>
           <div>&nbsp;&nbsp;<span class="tk">role:</span> <span class="ts">"Lead Frontend Engineer"</span>,</div>
-          <div>&nbsp;&nbsp;<span class="tk">location:</span> <span class="ts">"India 🇮🇳"</span>,</div>
+          <div>&nbsp;&nbsp;<span class="tk">location:</span> <span class="ts">"India ðŸ‡®ðŸ‡³"</span>,</div>
           <div>&nbsp;&nbsp;<span class="tk">experience:</span> <span class="tv">5.6</span>,  <span class="td">// years</span></div>
           <div>&nbsp;&nbsp;<span class="tk">currentStack:</span> [</div>
           <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="ts">"React.js"</span>, <span class="ts">"TypeScript"</span>,</div>
           <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="ts">"Next.js"</span>, <span class="ts">"Redux Toolkit"</span></div>
           <div>&nbsp;&nbsp;],</div>
-          <div>&nbsp;&nbsp;<span class="tk">awards:</span> <span class="ts">"Standing Ovation × 3"</span>,</div>
+          <div>&nbsp;&nbsp;<span class="tk">awards:</span> <span class="ts">"Standing Ovation Ã— 3"</span>,</div>
           <div>&nbsp;&nbsp;<span class="tk">openToWork:</span> <span class="tv">true</span></div>
           <div>};</div>
         </div>
@@ -266,7 +266,7 @@
   </div>
   <div class="skills-grid">
     <div class="skill-cat-card aos">
-      <h3>⚛  Core Frontend</h3>
+      <h3>âš›  Core Frontend</h3>
       <div class="tag-list">
         <span class="tag hot">React.js</span><span class="tag hot">TypeScript</span>
         <span class="tag hot">JavaScript ES6+</span><span class="tag hot">Next.js</span>
@@ -274,21 +274,21 @@
       </div>
     </div>
     <div class="skill-cat-card aos">
-      <h3>🗄  State Management</h3>
+      <h3>ðŸ—„  State Management</h3>
       <div class="tag-list">
         <span class="tag hot">Redux Toolkit</span><span class="tag hot">Redux</span>
         <span class="tag">React Context API</span><span class="tag">React Query</span><span class="tag">Zustand</span>
       </div>
     </div>
     <div class="skill-cat-card aos">
-      <h3>🎨  UI Libraries</h3>
+      <h3>ðŸŽ¨  UI Libraries</h3>
       <div class="tag-list">
         <span class="tag hot">Material-UI v5/v7</span><span class="tag hot">Tailwind CSS</span>
         <span class="tag">Styled Components</span><span class="tag">CSS Modules</span>
       </div>
     </div>
     <div class="skill-cat-card aos">
-      <h3>⚙  Build & Tooling</h3>
+      <h3>âš™  Build & Tooling</h3>
       <div class="tag-list">
         <span class="tag hot">Vite</span><span class="tag hot">Webpack</span>
         <span class="tag">Git</span><span class="tag">Jest</span>
@@ -296,7 +296,7 @@
       </div>
     </div>
     <div class="skill-cat-card aos">
-      <h3>🔧  Backend & APIs</h3>
+      <h3>ðŸ”§  Backend & APIs</h3>
       <div class="tag-list">
         <span class="tag hot">REST APIs</span><span class="tag hot">Axios</span>
         <span class="tag">Node.js</span><span class="tag">Express.js</span>
@@ -304,7 +304,7 @@
       </div>
     </div>
     <div class="skill-cat-card aos">
-      <h3>📋  Practices</h3>
+      <h3>ðŸ“‹  Practices</h3>
       <div class="tag-list">
         <span class="tag hot">Agile / Scrum</span><span class="tag">Code Reviews</span>
         <span class="tag">Performance Optimization</span><span class="tag">WCAG Accessibility</span>
@@ -327,15 +327,15 @@
       <div class="tl-card">
         <div class="tl-hdr">
           <div><div class="tl-role">Lead Software Design Engineer</div><div class="tl-company">Enterprise Software Corp Ltd.</div></div>
-          <div class="tl-period">Jun 2022 – Present · 4+ yrs</div>
+          <div class="tl-period">Jun 2022 â€“ Present Â· 4+ yrs</div>
         </div>
         <ul class="tl-bullets">
           <li>Architected and led frontend development of an <strong>enterprise dynamic form &amp; workflow platform</strong> used by global clients across APAC and EMEA.</li>
           <li>Designed a reusable component library of <strong>50+ production-grade UI components</strong> (date pickers, wizards, data grids, rich-text editors), slashing delivery time for new features.</li>
           <li>Eliminated redundant API calls via <strong>Redux Toolkit</strong> state architecture, improving perceived load time by <strong>~35%</strong>.</li>
-          <li>Led <strong>MUI v4 → v5/v7 migration</strong> and full TypeScript adoption across the codebase, cutting runtime type errors by <strong>over 40%</strong>.</li>
+          <li>Led <strong>MUI v4 â†’ v5/v7 migration</strong> and full TypeScript adoption across the codebase, cutting runtime type errors by <strong>over 40%</strong>.</li>
           <li>Integrated <strong>Next.js SSR</strong> for performance-critical modules, improving SEO and initial page load metrics.</li>
-          <li>Conducted structured code reviews, defined coding standards, and mentored <strong>3–4 junior/mid developers</strong>.</li>
+          <li>Conducted structured code reviews, defined coding standards, and mentored <strong>3â€“4 junior/mid developers</strong>.</li>
         </ul>
         <div class="tl-tags">
           <span class="tl-tag">React.js</span><span class="tl-tag">TypeScript</span>
@@ -349,7 +349,7 @@
       <div class="tl-card">
         <div class="tl-hdr">
           <div><div class="tl-role">Assistant System Engineer</div><div class="tl-company">Tata Consultancy Services (TCS)</div></div>
-          <div class="tl-period">Jan 2021 – Jun 2022 · 1.5 yrs</div>
+          <div class="tl-period">Jan 2021 â€“ Jun 2022 Â· 1.5 yrs</div>
         </div>
         <ul class="tl-bullets">
           <li>Built interactive <strong>frontend dashboards</strong> for business data visualization using React.js with hooks.</li>
@@ -375,54 +375,54 @@
   <div class="projects-grid">
     <div class="proj-card aos">
       <div class="proj-top">
-        <div class="proj-icon">📊</div>
+        <div class="proj-icon">ðŸ“Š</div>
         <div style="display:flex;gap:.4rem">
-          <a href="https://github.com/parthlashkari/nova-dash" target="_blank" rel="noopener noreferrer" class="proj-badge" style="text-decoration:none">GitHub ↗</a>
-          <a href="https://nova-dash-ashy.vercel.app/" target="_blank" rel="noopener noreferrer" class="proj-badge" style="text-decoration:none;background:#0070f3;border-color:#0070f3">Live Demo ↗</a>
+          <a href="https://github.com/parthlashkari/nova-dash" target="_blank" rel="noopener noreferrer" class="proj-badge" style="text-decoration:none">GitHub â†—</a>
+          <a href="https://nova-dash-ashy.vercel.app/" target="_blank" rel="noopener noreferrer" class="proj-badge" style="text-decoration:none;background:#0070f3;border-color:#0070f3">Live Demo â†—</a>
         </div>
       </div>
-      <div class="proj-name">NovaDash — Admin Analytics Dashboard</div>
-      <div class="proj-desc">Full-featured admin dashboard with custom SVG line & bar charts (zero chart libraries), dark/light mode, sortable paginated data table, sidebar navigation, and live search — pure React + TypeScript.</div>
-      <div class="proj-impact">▸ Custom SVG charts · Dark/light mode · Sortable table · Zero UI lib</div>
+      <div class="proj-name">NovaDash â€” Admin Analytics Dashboard</div>
+      <div class="proj-desc">Full-featured admin dashboard with custom SVG line & bar charts (zero chart libraries), dark/light mode, sortable paginated data table, sidebar navigation, and live search â€” pure React + TypeScript.</div>
+      <div class="proj-impact">â–¸ Custom SVG charts Â· Dark/light mode Â· Sortable table Â· Zero UI lib</div>
       <div class="proj-stack"><span class="stk">React 18</span><span class="stk">TypeScript</span><span class="stk">Vite</span><span class="stk">SVG Charts</span><span class="stk">CSS Variables</span></div>
     </div>
     <div class="proj-card aos">
       <div class="proj-top">
-        <div class="proj-icon">📋</div>
+        <div class="proj-icon">ðŸ“‹</div>
         <div style="display:flex;gap:.4rem">
-          <a href="https://github.com/parthlashkari/taskflow" target="_blank" rel="noopener noreferrer" class="proj-badge" style="text-decoration:none">GitHub ↗</a>
-          <a href="https://taskflow-two-psi.vercel.app/" target="_blank" rel="noopener noreferrer" class="proj-badge" style="text-decoration:none;background:#0070f3;border-color:#0070f3">Live Demo ↗</a>
+          <a href="https://github.com/parthlashkari/taskflow" target="_blank" rel="noopener noreferrer" class="proj-badge" style="text-decoration:none">GitHub â†—</a>
+          <a href="https://taskflow-two-psi.vercel.app/" target="_blank" rel="noopener noreferrer" class="proj-badge" style="text-decoration:none;background:#0070f3;border-color:#0070f3">Live Demo â†—</a>
         </div>
       </div>
-      <div class="proj-name">TaskFlow — Kanban Task Manager</div>
-      <div class="proj-desc">Full CRUD Kanban board with native HTML5 drag-and-drop between columns, priority labels (High/Medium/Low), tag system, localStorage persistence, and animated slide-in modal — zero dependencies.</div>
-      <div class="proj-impact">▸ Native DnD · localStorage persist · TypeScript · CRUD modal</div>
+      <div class="proj-name">TaskFlow â€” Kanban Task Manager</div>
+      <div class="proj-desc">Full CRUD Kanban board with native HTML5 drag-and-drop between columns, priority labels (High/Medium/Low), tag system, localStorage persistence, and animated slide-in modal â€” zero dependencies.</div>
+      <div class="proj-impact">â–¸ Native DnD Â· localStorage persist Â· TypeScript Â· CRUD modal</div>
       <div class="proj-stack"><span class="stk">React 18</span><span class="stk">TypeScript</span><span class="stk">Vite</span><span class="stk">HTML5 DnD</span><span class="stk">localStorage</span></div>
     </div>
     <div class="proj-card aos">
       <div class="proj-top">
-        <div class="proj-icon">🔍</div>
+        <div class="proj-icon">ðŸ”</div>
         <div style="display:flex;gap:.4rem">
-          <a href="https://github.com/parthlashkari/devfinder" target="_blank" rel="noopener noreferrer" class="proj-badge" style="text-decoration:none">GitHub ↗</a>
-          <a href="https://devfinder-dusky.vercel.app/" target="_blank" rel="noopener noreferrer" class="proj-badge" style="text-decoration:none;background:#0070f3;border-color:#0070f3">Live Demo ↗</a>
+          <a href="https://github.com/parthlashkari/devfinder" target="_blank" rel="noopener noreferrer" class="proj-badge" style="text-decoration:none">GitHub â†—</a>
+          <a href="https://devfinder-dusky.vercel.app/" target="_blank" rel="noopener noreferrer" class="proj-badge" style="text-decoration:none;background:#0070f3;border-color:#0070f3">Live Demo â†—</a>
         </div>
       </div>
-      <div class="proj-name">DevFinder — GitHub Profile Explorer</div>
+      <div class="proj-name">DevFinder â€” GitHub Profile Explorer</div>
       <div class="proj-desc">Search any GitHub username to explore their profile, public repositories, star counts, followers, and tech stack. Real GitHub REST API integration with loading skeletons, language filter, and error handling.</div>
-      <div class="proj-impact">▸ GitHub REST API · Language filter · Skeletons · Error handling</div>
+      <div class="proj-impact">â–¸ GitHub REST API Â· Language filter Â· Skeletons Â· Error handling</div>
       <div class="proj-stack"><span class="stk">React 18</span><span class="stk">TypeScript</span><span class="stk">GitHub API</span><span class="stk">Custom Hooks</span><span class="stk">Vite</span></div>
     </div>
     <div class="proj-card aos">
       <div class="proj-top">
-        <div class="proj-icon">📝</div>
+        <div class="proj-icon">ðŸ“</div>
         <div style="display:flex;gap:.4rem">
-          <a href="https://github.com/parthlashkari/formforge" target="_blank" rel="noopener noreferrer" class="proj-badge" style="text-decoration:none">GitHub ↗</a>
-          <a href="https://formforge-demo.vercel.app/" target="_blank" rel="noopener noreferrer" class="proj-badge" style="text-decoration:none;background:#0070f3;border-color:#0070f3">Live Demo ↗</a>
+          <a href="https://github.com/parthlashkari/formforge" target="_blank" rel="noopener noreferrer" class="proj-badge" style="text-decoration:none">GitHub â†—</a>
+          <a href="https://formforge-sand.vercel.app/" target="_blank" rel="noopener noreferrer" class="proj-badge" style="text-decoration:none;background:#0070f3;border-color:#0070f3">Live Demo â†—</a>
         </div>
       </div>
-      <div class="proj-name">FormForge — Enterprise Form Builder</div>
+      <div class="proj-name">FormForge â€” Enterprise Form Builder</div>
       <div class="proj-desc">Interactive enterprise form builder &amp; workflow automation platform. 3-panel drag-and-drop builder with live form preview, forms library, submissions management with CSV export, workflow rule visualiser, and RBAC settings.</div>
-      <div class="proj-impact">▸ Interactive DnD builder · Live preview · Workflow automation · RBAC</div>
+      <div class="proj-impact">â–¸ Interactive DnD builder Â· Live preview Â· Workflow automation Â· RBAC</div>
       <div class="proj-stack"><span class="stk">React 18</span><span class="stk">TypeScript</span><span class="stk">Vite</span><span class="stk">HTML5 DnD</span><span class="stk">CSS Variables</span></div>
     </div>
   </div>
@@ -437,22 +437,22 @@
   </div>
   <div class="awards-grid">
     <div class="aw-card aos">
-      <div class="aw-emoji">🏆</div>
-      <div class="aw-title">Standing Ovation Award × 3</div>
+      <div class="aw-emoji">ðŸ†</div>
+      <div class="aw-title">Standing Ovation Award Ã— 3</div>
       <div class="aw-org">Enterprise Software Corp</div>
       <div class="aw-desc">Company's highest peer recognition, received three times for delivering major product milestones with the latest tech stack and consistently exceeding stakeholder expectations.</div>
     </div>
     <div class="aw-card aos">
-      <div class="aw-emoji">⭐</div>
+      <div class="aw-emoji">â­</div>
       <div class="aw-title">High-5 Award</div>
       <div class="aw-org">Enterprise Software Corp</div>
-      <div class="aw-desc">Awarded for delivering the beta version of a flagship product ahead of schedule — demonstrating exceptional execution, focus, and delivery discipline under pressure.</div>
+      <div class="aw-desc">Awarded for delivering the beta version of a flagship product ahead of schedule â€” demonstrating exceptional execution, focus, and delivery discipline under pressure.</div>
     </div>
     <div class="aw-card aos">
-      <div class="aw-emoji">🎓</div>
-      <div class="aw-title">B.E. — Computer Science & Engineering</div>
-      <div class="aw-org">UIT, RGPV Bhopal · CGPA 7.91 / 10</div>
-      <div class="aw-desc">Bachelor of Engineering from University Institute of Technology, RGPV (2016–2020). Strong foundation in data structures, algorithms, DBMS, and software engineering principles.</div>
+      <div class="aw-emoji">ðŸŽ“</div>
+      <div class="aw-title">B.E. â€” Computer Science & Engineering</div>
+      <div class="aw-org">UIT, RGPV Bhopal Â· CGPA 7.91 / 10</div>
+      <div class="aw-desc">Bachelor of Engineering from University Institute of Technology, RGPV (2016â€“2020). Strong foundation in data structures, algorithms, DBMS, and software engineering principles.</div>
     </div>
   </div>
 </div>
@@ -462,8 +462,8 @@
   <div class="contact-center aos">
     <span class="section-label" style="justify-content:center;display:flex;margin-bottom:0.5rem">06. contact</span>
     <h2 class="contact-title">Let's Build Something</h2>
-    <p class="contact-sub">I'm open to senior / lead frontend roles, remote-first teams, and challenging product problems. Whether it's a job offer, a freelance project, or just a chat about React architecture — reach out.</p>
-    <a href="mailto:parthlashkari1111@gmail.com" class="email-btn">Say Hello ✉</a>
+    <p class="contact-sub">I'm open to senior / lead frontend roles, remote-first teams, and challenging product problems. Whether it's a job offer, a freelance project, or just a chat about React architecture â€” reach out.</p>
+    <a href="mailto:parthlashkari1111@gmail.com" class="email-btn">Say Hello âœ‰</a>
     <div class="social-row">
       <a href="https://www.linkedin.com/in/parth-lashkari-5b730a189/" target="_blank" rel="noopener noreferrer" class="soc-link">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7H10V9h4v2a6 6 0 016-3zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
@@ -482,7 +482,7 @@
 </div>
 
 <footer>
-  <p>// built by <span style="color:var(--accent)">Parth Lashkari</span> &nbsp;·&nbsp; <span style="color:var(--green)">React + TypeScript</span> &nbsp;·&nbsp; <span style="color:var(--text2)">2025</span></p>
+  <p>// built by <span style="color:var(--accent)">Parth Lashkari</span> &nbsp;Â·&nbsp; <span style="color:var(--green)">React + TypeScript</span> &nbsp;Â·&nbsp; <span style="color:var(--text2)">2025</span></p>
 </footer>
 
 <script>
@@ -541,3 +541,4 @@
 </script>
 </body>
 </html>
+
