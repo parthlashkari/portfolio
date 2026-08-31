@@ -47,7 +47,7 @@ The hub page (`index.html`) lets visitors choose their preferred variant.
 
 **Lead Frontend Engineer** with 5.6+ years building enterprise-grade React applications.
 
-- 🏢 Currently at **Newgen Software Technologies Ltd.**
+- 🏢 Currently at a **Leading Enterprise Software Company (MNC)**
 - ⚛️ Expert in **React.js, TypeScript, Next.js, Redux Toolkit**
 - 🏆 3× **Standing Ovation Award** recipient (company's highest recognition)
 - 📧 **parthlashkari111@gmail.com**
