@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Parth Lashkari — Portfolio & Projects: Interview Prep Guide</title>
+<style>
+  :root {
+    --bg: #0f1117; --bg2: #1a1d27; --bg3: #252836;
+    --border: #2e3349; --text1: #e8eaf6; --text2: #9ca3c4;
+    --indigo: #6366f1; --green: #10b981; --amber: #f59e0b; --red: #ef4444;
+    --purple: #8b5cf6;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text1); font-family: 'Segoe UI', system-ui, sans-serif; line-height: 1.7; font-size: 15px; }
+
+  /* ── Layout ── */
+  .page-wrap { display: flex; min-height: 100vh; }
+  .sidebar { width: 280px; background: var(--bg2); border-right: 1px solid var(--border); padding: 2rem 1.5rem; position: sticky; top: 0; height: 100vh; overflow-y: auto; flex-shrink: 0; }
+  .main { flex: 1; padding: 3rem 4rem; max-width: 900px; }
+
+  /* ── Sidebar ── */
+  .sidebar-title { font-size: .7rem; text-transform: uppercase; letter-spacing: .1em; color: var(--text2); margin-bottom: .75rem; }
+  .sidebar-brand { font-size: 1.1rem; font-weight: 700; color: var(--indigo); margin-bottom: 2rem; display: flex; align-items: center; gap: .5rem; }
+  .toc-section { margin-bottom: 1.5rem; }
+  .toc-section a { display: block; padding: .3rem .5rem; color: var(--text2); text-decoration: none; border-radius: 5px; font-size: .85rem; transition: all .15s; }
+  .toc-section a:hover, .toc-section a.active { color: var(--indigo); background: rgba(99,102,241,.1); }
+  .toc-badge { display: inline-block; padding: 1px 7px; border-radius: 10px; font-size: .7rem; margin-left: .4rem; }
+  .badge-indigo { background: rgba(99,102,241,.2); color: var(--indigo); }
+  .badge-green { background: rgba(16,185,129,.2); color: var(--green); }
+  .badge-amber { background: rgba(245,158,11,.2); color: var(--amber); }
+  .badge-purple { background: rgba(139,92,246,.2); color: var(--purple); }
+
+  /* ── Typography ── */
+  h1 { font-size: 2.2rem; font-weight: 800; line-height: 1.2; margin-bottom: 1rem; }
+  h2 { font-size: 1.5rem; font-weight: 700; margin: 3rem 0 1rem; padding-bottom: .5rem; border-bottom: 1px solid var(--border); }
+  h3 { font-size: 1.1rem; font-weight: 700; margin: 2rem 0 .75rem; color: var(--indigo); }
+  h4 { font-size: .95rem; font-weight: 700; margin: 1.5rem 0 .5rem; color: var(--text1); }
+  p { margin-bottom: .9rem; color: var(--text2); }
+  strong { color: var(--text1); }
+
+  /* ── Hero ── */
+  .hero { background: linear-gradient(135deg, rgba(99,102,241,.15), rgba(139,92,246,.1)); border: 1px solid rgba(99,102,241,.3); border-radius: 16px; padding: 2.5rem; margin-bottom: 3rem; }
+  .hero h1 { background: linear-gradient(90deg, #e8eaf6, #6366f1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .hero-meta { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 1.5rem; }
+  .hero-stat { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: .75rem 1.2rem; }
+  .hero-stat-val { font-size: 1.3rem; font-weight: 800; color: var(--indigo); }
+  .hero-stat-lbl { font-size: .75rem; color: var(--text2); }
+
+  /* ── Sections ── */
+  .section { margin-bottom: 4rem; }
+  .project-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 14px; padding: 2rem; margin-bottom: 2rem; }
+  .project-card-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+  .project-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; }
+  .project-title { font-size: 1.2rem; font-weight: 700; }
+  .project-url { font-size: .8rem; color: var(--indigo); text-decoration: none; }
+  .project-url:hover { text-decoration: underline; }
+  .stack-pills { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: 1rem; }
+  .pill { background: var(--bg3); border: 1px solid var(--border); border-radius: 20px; padding: 2px 10px; font-size: .75rem; color: var(--text2); }
+
+  /* ── Code ── */
+  pre { background: #0d1117; border: 1px solid var(--border); border-radius: 10px; padding: 1.2rem 1.5rem; overflow-x: auto; margin: 1rem 0 1.5rem; font-size: .82rem; line-height: 1.6; }
+  code { font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace; }
+  .inline-code { background: var(--bg3); border: 1px solid var(--border); border-radius: 4px; padding: 1px 6px; font-size: .85rem; font-family: 'Cascadia Code', monospace; color: var(--amber); }
+
+  /* ── Best practices ── */
+  .bp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0; }
+  .bp-item { background: var(--bg3); border: 1px solid var(--border); border-radius: 10px; padding: 1rem 1.2rem; }
+  .bp-item-title { font-size: .82rem; font-weight: 700; color: var(--green); margin-bottom: .4rem; display: flex; align-items: center; gap: .4rem; }
+  .bp-item p { font-size: .82rem; margin: 0; }
+
+  /* ── Q&A ── */
+  .qa-item { background: var(--bg2); border: 1px solid var(--border); border-left: 3px solid var(--indigo); border-radius: 0 12px 12px 0; padding: 1.5rem; margin-bottom: 1.5rem; }
+  .qa-q { font-weight: 700; color: var(--text1); margin-bottom: .75rem; font-size: .95rem; }
+  .qa-tag { display: inline-block; padding: 1px 8px; border-radius: 10px; font-size: .7rem; margin-left: .5rem; font-weight: 400; }
+  .qa-a { color: var(--text2); font-size: .88rem; }
+  .qa-a ul { padding-left: 1.2rem; }
+  .qa-a li { margin-bottom: .4rem; }
+  .qa-a code { font-family: monospace; background: var(--bg3); border-radius: 3px; padding: 0 4px; font-size: .82rem; color: var(--amber); }
+
+  /* ── Tips ── */
+  .tip-box { background: rgba(16,185,129,.08); border: 1px solid rgba(16,185,129,.25); border-radius: 10px; padding: 1rem 1.2rem; margin: 1rem 0; }
+  .tip-box.warn { background: rgba(245,158,11,.08); border-color: rgba(245,158,11,.25); }
+  .tip-label { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--green); margin-bottom: .4rem; }
+  .tip-box.warn .tip-label { color: var(--amber); }
+  .tip-box p { font-size: .86rem; margin: 0; }
+
+  /* ── Download button ── */
+  .download-bar { position: fixed; bottom: 2rem; right: 2rem; z-index: 100; }
+  .dl-btn { background: var(--indigo); color: #fff; border: none; border-radius: 50px; padding: .8rem 1.5rem; font-size: .9rem; font-weight: 600; cursor: pointer; box-shadow: 0 4px 24px rgba(99,102,241,.4); display: flex; align-items: center; gap: .5rem; }
+  .dl-btn:hover { background: #4f46e5; }
+
+  /* ── Flow diagrams ── */
+  .flow { background: var(--bg3); border: 1px solid var(--border); border-radius: 10px; padding: 1.2rem; margin: 1rem 0; font-size: .82rem; }
+  .flow-row { display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; padding: .3rem 0; }
+  .flow-box { background: var(--bg2); border: 1px solid var(--border); border-radius: 6px; padding: .3rem .8rem; color: var(--text1); white-space: nowrap; }
+  .flow-arrow { color: var(--indigo); font-weight: 700; }
+
+  /* ── Print / Download ── */
+  @media print {
+    .sidebar, .download-bar { display: none !important; }
+    .main { padding: 1rem 2rem; max-width: 100%; }
+    .page-wrap { display: block; }
+    body { background: #fff; color: #000; }
+    pre { background: #f5f5f5; }
+    h2 { color: #000; border-color: #ddd; }
+    h3 { color: #4f46e5; }
+    p, .qa-a { color: #333; }
+    .hero { background: #f0f0ff; border-color: #c7d2fe; }
+    .hero h1 { -webkit-text-fill-color: #1e1b4b; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-wrap">
+
+<!-- ── SIDEBAR ── -->
+<nav class="sidebar">
+  <div class="sidebar-brand">📋 Interview Guide</div>
+
+  <div class="toc-section">
+    <div class="sidebar-title">Overview</div>
+    <a href="#summary">Project Summary</a>
+    <a href="#architecture">Tech Stack & Architecture</a>
+  </div>
+
+  <div class="toc-section">
+    <div class="sidebar-title">Projects</div>
+    <a href="#portfolio">Portfolio Website <span class="toc-badge badge-green">GitHub Pages</span></a>
+    <a href="#novadash">NovaDash <span class="toc-badge badge-indigo">React+TS</span></a>
+    <a href="#taskflow">TaskFlow <span class="toc-badge badge-amber">Kanban</span></a>
+    <a href="#devfinder">DevFinder <span class="toc-badge badge-purple">API</span></a>
+  </div>
+
+  <div class="toc-section">
+    <div class="sidebar-title">Interview Prep</div>
+    <a href="#qa-react">React & Hooks</a>
+    <a href="#qa-ts">TypeScript</a>
+    <a href="#qa-perf">Performance</a>
+    <a href="#qa-api">APIs & State</a>
+    <a href="#qa-design">Design Decisions</a>
+    <a href="#qa-deploy">Deployment & CI/CD</a>
+    <a href="#cheatsheet">Quick Cheatsheet</a>
+  </div>
+
+  <div style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border)">
+    <div class="sidebar-title">Live Links</div>
+    <a href="https://parthlashkari.github.io/portfolio/" target="_blank" style="display:block;padding:.3rem .5rem;color:var(--indigo);font-size:.82rem;text-decoration:none">🌐 Portfolio</a>
+    <a href="https://nova-dash-ashy.vercel.app/" target="_blank" style="display:block;padding:.3rem .5rem;color:var(--indigo);font-size:.82rem;text-decoration:none">📊 NovaDash</a>
+    <a href="https://taskflow-two-psi.vercel.app/" target="_blank" style="display:block;padding:.3rem .5rem;color:var(--indigo);font-size:.82rem;text-decoration:none">📋 TaskFlow</a>
+    <a href="https://devfinder-dusky.vercel.app/" target="_blank" style="display:block;padding:.3rem .5rem;color:var(--indigo);font-size:.82rem;text-decoration:none">🔍 DevFinder</a>
+  </div>
+</nav>
+
+<!-- ── MAIN ── -->
+<main class="main">
+
+<!-- HERO -->
+<div class="hero" id="summary">
+  <h1>Portfolio & Projects<br/>Interview Prep Guide</h1>
+  <p style="color:var(--text2);margin-top:.75rem;font-size:1rem">Everything you need to explain your portfolio and 3 React projects in any frontend interview — code walkthrough, best practices, and 30+ Q&amp;A.</p>
+  <div class="hero-meta">
+    <div class="hero-stat"><div class="hero-stat-val">4</div><div class="hero-stat-lbl">Live Projects</div></div>
+    <div class="hero-stat"><div class="hero-stat-val">React 18</div><div class="hero-stat-lbl">Core Framework</div></div>
+    <div class="hero-stat"><div class="hero-stat-val">TypeScript</div><div class="hero-stat-lbl">All 3 Projects</div></div>
+    <div class="hero-stat"><div class="hero-stat-val">Zero</div><div class="hero-stat-lbl">UI Libraries Used</div></div>
+    <div class="hero-stat"><div class="hero-stat-val">Vercel</div><div class="hero-stat-lbl">Deployment Platform</div></div>
+  </div>
+</div>
+
+<!-- ──────────────────────────────────────────────
+     ARCHITECTURE OVERVIEW
+────────────────────────────────────────────── -->
+<section class="section" id="architecture">
+  <h2>🏗 Tech Stack & Architecture</h2>
+
+  <h3>Portfolio Website — Pure HTML/CSS/JS</h3>
+  <div class="flow">
+    <div class="flow-row">
+      <div class="flow-box">3 HTML files<br/><small style="color:var(--text2)">dark-dev / creative / minimal</small></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box">GitHub Repo<br/><small style="color:var(--text2)">parthlashkari/portfolio</small></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box">GitHub Actions<br/><small style="color:var(--text2)">deploy.yml triggers on push</small></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box">GitHub Pages<br/><small style="color:var(--text2)">parthlashkari.github.io/portfolio</small></div>
+    </div>
+  </div>
+
+  <h3>React Projects (NovaDash / TaskFlow / DevFinder)</h3>
+  <div class="flow">
+    <div class="flow-row">
+      <div class="flow-box">src/ TypeScript<br/><small style="color:var(--text2)">React 18 + TSX</small></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box">Vite Build<br/><small style="color:var(--text2)">tsc -b &amp;&amp; vite build</small></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box">dist/ folder<br/><small style="color:var(--text2)">optimized JS + CSS</small></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box">Vercel CDN<br/><small style="color:var(--text2)">auto-deploy on git push</small></div>
+    </div>
+  </div>
+
+  <h3>Why These Technology Choices?</h3>
+  <div class="bp-grid">
+    <div class="bp-item"><div class="bp-item-title">✦ Vite over CRA</div><p>Vite uses native ES modules and esbuild for near-instant dev server startup (&lt;300ms vs CRA's 30s+). HMR is also much faster.</p></div>
+    <div class="bp-item"><div class="bp-item-title">✦ TypeScript Strict Mode</div><p><code class="inline-code">"strict": true</code> in tsconfig catches null checks, implicit any, and property access errors at compile time — not runtime.</p></div>
+    <div class="bp-item"><div class="bp-item-title">✦ No UI Library</div><p>Zero dependency on MUI/Antd/Tailwind. Every component is hand-crafted. This demonstrates deep CSS understanding and is a unique portfolio differentiator.</p></div>
+    <div class="bp-item"><div class="bp-item-title">✦ Vercel for Hosting</div><p>Free tier, automatic HTTPS, global CDN, preview deployments on every push. Each git push to main auto-triggers a production deploy.</p></div>
+  </div>
+</section>
+
+<!-- ──────────────────────────────────────────────
+     PORTFOLIO WEBSITE
+────────────────────────────────────────────── -->
+<section class="section" id="portfolio">
+  <h2>🌐 Portfolio Website</h2>
+
+  <div class="project-card">
+    <div class="project-card-header">
+      <div class="project-icon" style="background:rgba(16,185,129,.1)">🌐</div>
+      <div>
+        <div class="project-title">Personal Portfolio — 3 Design Variants</div>
+        <a class="project-url" href="https://parthlashkari.github.io/portfolio/" target="_blank">parthlashkari.github.io/portfolio</a>
+      </div>
+    </div>
+    <div class="stack-pills">
+      <span class="pill">HTML5</span><span class="pill">CSS3</span><span class="pill">Vanilla JS</span>
+      <span class="pill">GitHub Pages</span><span class="pill">GitHub Actions</span>
+    </div>
+    <p>Three completely different visual designs in three separate HTML files — all deployed from a single GitHub repository with zero build step. Each file is self-contained (CSS and JS are inline or in &lt;style&gt; blocks).</p>
+  </div>
+
+  <h3>How It Works — Step by Step</h3>
+
+  <h4>1. Three Design Philosophies</h4>
+  <p><strong>dark-dev.html</strong> — Dark GitHub-aesthetic. Uses a canvas particle animation, typewriter effect (cycling through job titles), and terminal-style project cards. Targets developer roles.</p>
+  <p><strong>creative.html</strong> — Glassmorphism with gradient blobs, counter animations (numbers count up when scrolled into view), and vibrant colour accent. Targets design-aware companies.</p>
+  <p><strong>minimal.html</strong> — Clean white/navy executive style. Conservative typography, dividers, and clean tables. Targets enterprise/corporate companies.</p>
+
+  <h4>2. GitHub Actions CI/CD Pipeline</h4>
+  <pre><code># .github/workflows/deploy.yml — the deployment pipeline
+on:
+  push:
+    branches: [main]     # triggers on every push to main
+
+jobs:
+  deploy:
+    steps:
+      - uses: actions/checkout@v4           # pull latest code
+      - uses: actions/configure-pages@v5    # set up Pages environment
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'                         # entire repo root = website
+      - uses: actions/deploy-pages@v4      # push to GitHub Pages CDN</code></pre>
+  <p>Every time you <strong>git push to main</strong>, this pipeline runs automatically. GitHub builds and deploys within ~30 seconds. No manual FTP, no manual uploads.</p>
+
+  <h4>3. Scroll-Triggered Animations (No Library)</h4>
+  <pre><code>// IntersectionObserver — detects when element enters viewport
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible'); // CSS handles the animation
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));</code></pre>
+  <p>Instead of importing an animation library like AOS.js (75KB), a 10-line <code class="inline-code">IntersectionObserver</code> does the same job with zero overhead.</p>
+
+  <h4>4. Typing Animation (Vanilla JS)</h4>
+  <pre><code>const titles = ['Lead Frontend Engineer', 'React Specialist', 'TypeScript Developer'];
+let i = 0, j = 0, deleting = false;
+
+function type() {
+  const current = titles[i % titles.length];
+  el.textContent = deleting ? current.slice(0, --j) : current.slice(0, ++j);
+  if (!deleting && j === current.length) setTimeout(() => deleting = true, 1500);
+  if (deleting && j === 0) { deleting = false; i++; }
+  setTimeout(type, deleting ? 50 : 100);
+}
+type();</code></pre>
+
+  <div class="tip-box">
+    <div class="tip-label">💡 Interview Talking Point</div>
+    <p>Instead of a 50KB typing library, this is 10 lines of recursive setTimeout. Interviewers love seeing you understand the fundamentals before reaching for a package.</p>
+  </div>
+</section>
+
+<!-- ──────────────────────────────────────────────
+     NOVADASH
+────────────────────────────────────────────── -->
+<section class="section" id="novadash">
+  <h2>📊 NovaDash — Admin Analytics Dashboard</h2>
+
+  <div class="project-card">
+    <div class="project-card-header">
+      <div class="project-icon" style="background:rgba(99,102,241,.1)">📊</div>
+      <div>
+        <div class="project-title">NovaDash — Admin Dashboard</div>
+        <a class="project-url" href="https://nova-dash-ashy.vercel.app/" target="_blank">nova-dash-ashy.vercel.app</a>
+      </div>
+    </div>
+    <div class="stack-pills">
+      <span class="pill">React 18</span><span class="pill">TypeScript</span><span class="pill">Vite</span>
+      <span class="pill">SVG Charts</span><span class="pill">CSS Variables</span><span class="pill">useMemo</span>
+    </div>
+    <p>A full admin SaaS dashboard with 5 functional pages, custom hand-drawn SVG charts, dark/light theme, sortable paginated table, real-time search, and CSV export. No Recharts, no Chart.js — every chart is raw SVG math.</p>
+  </div>
+
+  <h3>Folder Structure & Architecture</h3>
+  <pre><code>src/
+├── App.tsx              # root — handles routing, search, theme, export
+├── types.ts             # all TypeScript interfaces (Stat, Transaction, AppUser, Order)
+├── data.ts              # mock data arrays (all centralized)
+├── components/
+│   ├── StatsCard.tsx    # KPI card with trend indicator
+│   ├── LineChart.tsx    # custom SVG line chart
+│   ├── BarChart.tsx     # custom SVG bar chart
+│   └── DataTable.tsx    # sortable + paginated table
+└── pages/
+    ├── AnalyticsPage.tsx  # traffic charts + sources table
+    ├── UsersPage.tsx      # team management table
+    ├── OrdersPage.tsx     # orders table with status badges
+    └── SettingsPage.tsx   # profile form + notification toggles</code></pre>
+
+  <h3>1. Custom SVG Line Chart — How It Works</h3>
+  <pre><code>// LineChart.tsx — converting data points to SVG path coordinates
+const W = 600, H = 160, PAD = 20;
+const max = Math.max(...data.map(d => d.value));
+
+// Map each data value to an (x, y) pixel coordinate
+const pts = data.map((d, i) => ({
+  x: PAD + (i / (data.length - 1)) * (W - PAD * 2),
+  y: H - PAD - (d.value / max) * (H - PAD * 2),
+}));
+
+// Build the SVG path string: "M x0,y0 L x1,y1 L x2,y2 ..."
+const path = pts.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x},${p.y}`).join(' ');
+
+// Area fill: same path + closing back along the bottom
+const area = `${path} L ${pts.at(-1)!.x},${H} L ${pts[0].x},${H} Z`;</code></pre>
+  <p>The key insight is <strong>linear interpolation</strong>: map a data value in range [0, max] to a pixel in range [0, H]. No external library needed.</p>
+
+  <h3>2. Theme System — CSS Variables + React State</h3>
+  <pre><code>// Single state at App level controls everything
+const [theme, setTheme] = useState&lt;'light' | 'dark'&gt;('dark');
+
+// App root gets a class that activates CSS variable overrides
+&lt;div className={`app ${theme}`}&gt; ... &lt;/div&gt;
+
+/* App.css — two sets of variables, toggled by class */
+.app.dark  { --bg: #0f1117; --text1: #e8eaf6; --border: #2e3349; }
+.app.light { --bg: #ffffff; --text1: #111827; --border: #e5e7eb; }
+
+/* Every component uses variables — zero hardcoded colours */
+.card { background: var(--bg2); border: 1px solid var(--border); }</code></pre>
+  <p>This is the <strong>single source of truth</strong> pattern. When theme changes, React re-renders the class, CSS variables cascade to every child automatically — no prop drilling, no context needed.</p>
+
+  <h3>3. Search with useMemo — Avoiding Expensive Recalculation</h3>
+  <pre><code>const [search, setSearch] = useState('');
+
+// useMemo caches the filtered result — only recomputes when search or data changes
+const filteredTransactions = useMemo(
+  () => transactions.filter(t =>
+    t.user.toLowerCase().includes(search.toLowerCase()) ||
+    t.email.toLowerCase().includes(search.toLowerCase())
+  ),
+  [search]  // dependency array — only runs when search value changes
+);
+
+// Without useMemo: filter runs on EVERY render (including unrelated state changes)
+// With useMemo: filter runs ONLY when search text changes — performance win</code></pre>
+
+  <h3>4. CSV Export — Browser-native, No Library</h3>
+  <pre><code>function exportCSV() {
+  const headers = ['Customer', 'Email', 'Amount', 'Status', 'Method', 'Date'];
+  const rows = filteredTransactions.map(t =>
+    [t.user, t.email, `$${t.amount}`, t.status, t.method, t.date]
+  );
+
+  // Convert array of arrays to CSV string
+  const csv = [headers, ...rows]
+    .map(row => row.map(v => `"${v}"`).join(','))
+    .join('\n');
+
+  // Create a temporary blob URL and click it — triggers browser download
+  const blob = new Blob([csv], { type: 'text/csv' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'transactions.csv';
+  a.click();
+  URL.revokeObjectURL(url); // clean up memory
+}</code></pre>
+  <p><code class="inline-code">URL.createObjectURL</code> creates a temporary in-memory URL. After the download, <code class="inline-code">revokeObjectURL</code> frees the memory. This is the browser-native way to download files without a server round-trip.</p>
+
+  <h3>5. Pagination Bug Fix — useEffect Dependency</h3>
+  <pre><code>// DataTable.tsx — the bug: page index doesn't reset when data changes
+const [page, setPage] = useState(0);
+
+// FIX: reset to page 0 whenever the filtered data array changes
+useEffect(() => {
+  setPage(0);
+}, [data]); // runs whenever the 'data' prop reference changes
+
+// Without this: user searches on page 3, filtered has 2 results,
+// rows = sorted.slice(3*6, 4*6) = [] — empty table even with results!</code></pre>
+
+  <div class="tip-box">
+    <div class="tip-label">💡 Best Practices Applied in NovaDash</div>
+    <p><strong>1) TypeScript strict mode</strong> — every function param and return type is typed. <strong>2) useMemo for derived state</strong> — filtered data is computed not stored. <strong>3) Separation of concerns</strong> — data, types, components, and pages are all in separate files. <strong>4) No hardcoded colours</strong> — 100% CSS variables for theming. <strong>5) useEffect dependency cleanup</strong> — pagination state syncs with prop changes.</p>
+  </div>
+</section>
+
+<!-- ──────────────────────────────────────────────
+     TASKFLOW
+────────────────────────────────────────────── -->
+<section class="section" id="taskflow">
+  <h2>📋 TaskFlow — Kanban Task Manager</h2>
+
+  <div class="project-card">
+    <div class="project-card-header">
+      <div class="project-icon" style="background:rgba(245,158,11,.1)">📋</div>
+      <div>
+        <div class="project-title">TaskFlow — Kanban Board</div>
+        <a class="project-url" href="https://taskflow-two-psi.vercel.app/" target="_blank">taskflow-two-psi.vercel.app</a>
+      </div>
+    </div>
+    <div class="stack-pills">
+      <span class="pill">React 18</span><span class="pill">TypeScript</span><span class="pill">HTML5 DnD API</span>
+      <span class="pill">localStorage</span><span class="pill">Custom Hook</span><span class="pill">Generic Types</span>
+    </div>
+    <p>A full Kanban board with To Do / In Progress / Done columns. Drag tasks between columns with native HTML5 DnD (no react-dnd). Full CRUD via animated modal. Data survives page refresh via a custom <code class="inline-code">useLocalStorage</code> hook.</p>
+  </div>
+
+  <h3>Folder Structure</h3>
+  <pre><code>src/
+├── App.tsx              # board state, drag handlers, modal orchestration
+├── types.ts             # Column, Task, Priority, ColumnId interfaces
+├── hooks/
+│   └── useLocalStorage.ts  # generic hook — persists any state to localStorage
+└── components/
+    ├── KanbanColumn.tsx    # one column — receives tasks + DnD handlers
+    ├── TaskCard.tsx        # individual task card with drag handle
+    └── TaskModal.tsx       # add/edit modal with form validation</code></pre>
+
+  <h3>1. Custom useLocalStorage Hook — Generic TypeScript</h3>
+  <pre><code>// hooks/useLocalStorage.ts
+// Generic &lt;T&gt; means this works for ANY data type — not just one
+export function useLocalStorage&lt;T&gt;(
+  key: string,
+  initial: T
+): [T, (v: T | ((prev: T) =&gt; T)) =&gt; void] {
+
+  const [state, setState] = useState&lt;T&gt;(() =&gt; {
+    try {
+      const stored = localStorage.getItem(key);
+      return stored ? (JSON.parse(stored) as T) : initial;
+      // Lazy initializer: reads from localStorage ONCE on mount (not every render)
+    } catch {
+      return initial; // handles corrupted JSON gracefully
+    }
+  });
+
+  useEffect(() =&gt; {
+    localStorage.setItem(key, JSON.stringify(state));
+    // Syncs to localStorage every time state changes
+  }, [key, state]);
+
+  return [state, setState]; // same API as useState — drop-in replacement
+}</code></pre>
+  <p>The <code class="inline-code">useState</code> lazy initializer (<code class="inline-code">() =&gt; { ... }</code>) is critical — it only runs once on mount. If you passed the <code class="inline-code">localStorage.getItem()</code> call directly (without the function wrapper), it would run on every render.</p>
+
+  <h3>2. HTML5 Drag and Drop — No Library</h3>
+  <pre><code>// TaskCard.tsx — make the card draggable
+&lt;div
+  draggable            // enables the DnD API on this element
+  onDragStart={() =&gt; onDragStart(task.id)}   // record which task is dragging
+&gt;
+
+// KanbanColumn.tsx — make the column a drop target
+&lt;div
+  onDragOver={e =&gt; e.preventDefault()}   // REQUIRED: allows drop to fire
+  onDrop={() =&gt; onDrop(columnId)}        // fires when card is released here
+&gt;
+
+// App.tsx — the state logic
+const [dragging, setDragging] = useState&lt;string | null&gt;(null);
+
+function handleDrop(targetColumnId: ColumnId) {
+  if (!dragging) return;
+  setColumns(cols =&gt; cols.map(col =&gt; ({
+    ...col,
+    tasks: col.id === targetColumnId
+      ? [...col.tasks, findTask(dragging)]    // add to target column
+      : col.tasks.filter(t =&gt; t.id !== dragging) // remove from source
+  })));
+  setDragging(null);
+}</code></pre>
+
+  <div class="tip-box warn">
+    <div class="tip-label">⚠️ Common Mistake — Why e.preventDefault() is Mandatory</div>
+    <p>By default, browsers don't allow drops on most elements. <code class="inline-code">onDragOver={e => e.preventDefault()}</code> tells the browser "yes, this element accepts drops". Without it, the <code class="inline-code">onDrop</code> handler never fires.</p>
+  </div>
+
+  <h3>3. TypeScript: Discriminated Unions for Task Priority</h3>
+  <pre><code>// types.ts — strict typing prevents invalid priority values
+export type Priority = 'high' | 'medium' | 'low';
+export type ColumnId = 'todo' | 'in-progress' | 'done';
+
+export interface Task {
+  id: string;
+  title: string;
+  description: string;
+  priority: Priority;    // can ONLY be 'high' | 'medium' | 'low'
+  tags: string[];
+  columnId: ColumnId;    // can ONLY be one of the 3 valid columns
+  createdAt: number;     // timestamp for sorting
+}
+
+// TypeScript will error at compile time if you try:
+// task.priority = 'urgent'    ❌ Type '"urgent"' not assignable to type 'Priority'
+// task.columnId = 'backlog'   ❌ Type '"backlog"' not assignable to type 'ColumnId'</code></pre>
+
+  <h3>4. Full CRUD with Controlled Modal Form</h3>
+  <pre><code>// App.tsx — modal state machine pattern
+const [modal, setModal] = useState&lt;{
+  open: boolean;
+  mode: 'add' | 'edit';
+  task?: Task;         // populated only in edit mode
+  columnId?: ColumnId; // populated only in add mode
+}&gt;({ open: false, mode: 'add' });
+
+// Add: open modal with empty form, targeted at a column
+function openAdd(columnId: ColumnId) {
+  setModal({ open: true, mode: 'add', columnId });
+}
+
+// Edit: open modal pre-filled with existing task data
+function openEdit(task: Task) {
+  setModal({ open: true, mode: 'edit', task });
+}
+
+// Save: handles both add and edit in one function
+function handleSave(data: Omit&lt;Task, 'id' | 'createdAt'&gt;) {
+  if (modal.mode === 'add') {
+    // add with generated id and timestamp
+    addTask({ ...data, id: crypto.randomUUID(), createdAt: Date.now() });
+  } else {
+    // update existing task in place
+    updateTask(modal.task!.id, data);
+  }
+  setModal({ open: false, mode: 'add' });
+}</code></pre>
+
+  <div class="tip-box">
+    <div class="tip-label">💡 Best Practices Applied in TaskFlow</div>
+    <p><strong>1) Generic custom hook</strong> — <code>useLocalStorage&lt;T&gt;</code> is reusable for any data type. <strong>2) Lazy useState initializer</strong> — reads localStorage once, not on every render. <strong>3) Immutable state updates</strong> — always spread/map, never mutate arrays directly. <strong>4) Union types for constraints</strong> — Priority and ColumnId are string literal unions, not raw strings. <strong>5) crypto.randomUUID()</strong> — browser-native UUID generation, no uuid package needed.</p>
+  </div>
+</section>
+
+<!-- ──────────────────────────────────────────────
+     DEVFINDER
+────────────────────────────────────────────── -->
+<section class="section" id="devfinder">
+  <h2>🔍 DevFinder — GitHub Profile Explorer</h2>
+
+  <div class="project-card">
+    <div class="project-card-header">
+      <div class="project-icon" style="background:rgba(139,92,246,.1)">🔍</div>
+      <div>
+        <div class="project-title">DevFinder — GitHub Profile Explorer</div>
+        <a class="project-url" href="https://devfinder-dusky.vercel.app/" target="_blank">devfinder-dusky.vercel.app</a>
+      </div>
+    </div>
+    <div class="stack-pills">
+      <span class="pill">React 18</span><span class="pill">TypeScript</span><span class="pill">GitHub REST API</span>
+      <span class="pill">useCallback</span><span class="pill">Promise.all</span><span class="pill">Error Handling</span>
+    </div>
+    <p>Search any GitHub username to see their profile, repos, stars, and tech stack. No API key required — uses the public GitHub REST API. Handles 404, rate limiting (403), loading states, and language filtering.</p>
+  </div>
+
+  <h3>1. Custom useGitHub Hook — All API Logic Encapsulated</h3>
+  <pre><code>// hooks/useGitHub.ts
+export function useGitHub() {
+  const [state, setState] = useState&lt;{
+    user: GithubUser | null;
+    repos: GithubRepo[];
+    loading: boolean;
+    error: string | null;
+  }&gt;({ user: null, repos: [], loading: false, error: null });
+
+  const search = useCallback(async (username: string) =&gt; {
+    if (!username.trim()) return;
+    setState({ user: null, repos: [], loading: true, error: null });
+
+    try {
+      // Promise.all fires BOTH requests simultaneously — not sequentially
+      // Sequential (bad): 200ms + 200ms = 400ms total
+      // Parallel (good):  max(200ms, 200ms) = 200ms total
+      const [userRes, reposRes] = await Promise.all([
+        fetch(`https://api.github.com/users/${encodeURIComponent(username)}`),
+        fetch(`https://api.github.com/users/${encodeURIComponent(username)}/repos?per_page=30&sort=updated`),
+      ]);
+
+      // Granular error handling — different message for each error type
+      if (userRes.status === 404) {
+        setState({ ..., error: `No user found with username "${username}"` });
+        return;
+      }
+      if (userRes.status === 403) {
+        setState({ ..., error: 'GitHub API rate limit exceeded. Try again in a minute.' });
+        return;
+      }
+    } catch (err) {
+      setState({ ..., error: 'Network error. Check your connection.' });
+    }
+  }, []); // empty deps — function identity is stable, doesn't re-create on render
+
+  return { ...state, search };
+}</code></pre>
+
+  <h3>2. Why encodeURIComponent?</h3>
+  <pre><code>// SECURITY: always encode user input before using in URLs
+fetch(`https://api.github.com/users/${encodeURIComponent(username)}`)
+
+// Without encoding — URL injection attack:
+// username = "john/../../admin" → URL becomes malformed/exploited
+// username = "john doe" → URL breaks (space is invalid in URLs)
+
+// With encoding:
+// "john doe" → "john%20doe" ✓
+// "john/test" → "john%2Ftest" ✓ (/ is encoded)</code></pre>
+
+  <h3>3. Language Filter — Derived State Pattern</h3>
+  <pre><code>// App.tsx — language filter is DERIVED, not stored in extra state
+const [langFilter, setLangFilter] = useState('All');
+
+// Extract unique languages from repos (Set removes duplicates)
+const languages = [
+  'All',
+  ...Array.from(
+    new Set(
+      repos.map(r =&gt; r.language).filter(Boolean) as string[]
+      // .filter(Boolean) removes null/undefined language values
+    )
+  )
+];
+
+// Filtering is computed inline — no useEffect needed to sync separate state
+const filtered = langFilter === 'All'
+  ? repos
+  : repos.filter(r =&gt; r.language === langFilter);</code></pre>
+  <p>This is the React golden rule: <strong>don't sync state — derive it</strong>. The filtered repos list is always computed from <code class="inline-code">repos</code> + <code class="inline-code">langFilter</code>. Adding a separate <code class="inline-code">filteredRepos</code> state would create a sync problem.</p>
+
+  <h3>4. TypeScript Interface for GitHub API Response</h3>
+  <pre><code>// types.ts — typed API response prevents runtime surprises
+export interface GithubUser {
+  login: string;
+  name: string | null;     // null if user hasn't set a name
+  avatar_url: string;
+  bio: string | null;
+  public_repos: number;
+  followers: number;
+  following: number;
+  location: string | null;
+  blog: string | null;
+  created_at: string;
+}
+
+export interface GithubRepo {
+  id: number;
+  name: string;
+  description: string | null;
+  html_url: string;
+  stargazers_count: number;
+  forks_count: number;
+  language: string | null;  // null for repos with no detected language
+  updated_at: string;
+}</code></pre>
+
+  <div class="tip-box">
+    <div class="tip-label">💡 Best Practices Applied in DevFinder</div>
+    <p><strong>1) Promise.all</strong> — parallel API calls cut load time in half vs sequential awaits. <strong>2) useCallback</strong> — search function has stable identity, safe to pass as prop or put in useEffect deps. <strong>3) encodeURIComponent</strong> — always encode user input in URLs (security). <strong>4) Granular error handling</strong> — 404 vs 403 vs network error all show different messages. <strong>5) Derived state</strong> — language filter computed inline, not synced via useEffect.</p>
+  </div>
+</section>
+
+<!-- ──────────────────────────────────────────────
+     INTERVIEW Q&A
+────────────────────────────────────────────── -->
+<section class="section" id="qa-react">
+  <h2>🎯 Interview Questions — React &amp; Hooks</h2>
+
+  <div class="qa-item">
+    <div class="qa-q">Q1. What is the difference between useMemo and useCallback? Where did you use them? <span class="qa-tag badge-indigo">Hooks</span></div>
+    <div class="qa-a">
+      <p><strong>useMemo</strong> memoizes a <em>computed value</em>. <strong>useCallback</strong> memoizes a <em>function reference</em>.</p>
+      <ul>
+        <li>In <strong>NovaDash</strong>: <code>useMemo</code> for filtered transactions — expensive filter recalculates only when search changes, not on every render.</li>
+        <li>In <strong>DevFinder</strong>: <code>useCallback</code> for the <code>search</code> function — keeps the function identity stable so it can safely be placed in useEffect dependency arrays without causing infinite loops.</li>
+        <li>Key rule: <code>useMemo(() =&gt; value, deps)</code> vs <code>useCallback(() =&gt; fn, deps)</code>. Both cache between renders until deps change.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-q">Q2. Explain the useEffect in your useLocalStorage hook. Why is the dependency array important? <span class="qa-tag badge-indigo">Hooks</span></div>
+    <div class="qa-a">
+      <pre><code>useEffect(() =&gt; {
+  localStorage.setItem(key, JSON.stringify(state));
+}, [key, state]); // runs ONLY when key or state changes</code></pre>
+      <p>Without the dependency array <code>[key, state]</code>, the effect runs after every single render — writing to localStorage even when the state didn't change. With the dependency array, it only writes when state actually changes, which is the correct behaviour.</p>
+    </div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-q">Q3. What is the lazy initializer pattern in useState and why did you use it in TaskFlow? <span class="qa-tag badge-indigo">Hooks</span></div>
+    <div class="qa-a">
+      <pre><code>// ✗ Bad — getItem() runs on EVERY render
+const [state, setState] = useState(JSON.parse(localStorage.getItem('key') || '[]'));
+
+// ✓ Good — function runs ONLY once on mount
+const [state, setState] = useState(() =&gt; {
+  return JSON.parse(localStorage.getItem('key') || '[]');
+});</code></pre>
+      <p>The lazy initializer (passing a function instead of a value) means React only calls it on the initial mount. Since localStorage.getItem is a synchronous DOM operation, calling it on every render would be wasteful.</p>
+    </div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-q">Q4. How does your drag-and-drop work without a library? What event order is involved? <span class="qa-tag badge-amber">DnD</span></div>
+    <div class="qa-a">
+      <p>HTML5 DnD fires events in this order:</p>
+      <ul>
+        <li><code>dragstart</code> → fires on the dragged element → I store the task ID in state</li>
+        <li><code>dragover</code> → fires on potential drop targets (columns) → <strong>must call e.preventDefault()</strong> to allow drop</li>
+        <li><code>drop</code> → fires on the column where card is released → I move the task between columns</li>
+        <li><code>dragend</code> → fires on the original element → cleanup</li>
+      </ul>
+      <p>The state update in <code>handleDrop</code> uses immutable array operations — <code>filter</code> to remove from source, spread to add to target — which triggers React to re-render both columns.</p>
+    </div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-q">Q5. Why did you derive the language filter list instead of storing it in state? <span class="qa-tag badge-purple">State Design</span></div>
+    <div class="qa-a">
+      <p>React's core principle: <strong>don't duplicate state</strong>. The language list can always be computed from <code>repos</code>, so storing it separately creates two sources of truth that can go out of sync.</p>
+      <pre><code>// ✗ Bad — two synced states that can diverge
+const [repos, setRepos] = useState([]);
+const [languages, setLanguages] = useState([]); // must be kept in sync manually
+
+// ✓ Good — one source of truth, language list is derived
+const [repos, setRepos] = useState([]);
+const languages = ['All', ...new Set(repos.map(r =&gt; r.language).filter(Boolean))];
+// Automatically up to date whenever repos changes</code></pre>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="qa-ts">
+  <h2>🎯 Interview Questions — TypeScript</h2>
+
+  <div class="qa-item">
+    <div class="qa-q">Q6. How did you use TypeScript generics in your custom hook? <span class="qa-tag badge-indigo">Generics</span></div>
+    <div class="qa-a">
+      <pre><code>function useLocalStorage&lt;T&gt;(key: string, initial: T): [T, Dispatch&lt;T&gt;]</code></pre>
+      <p>The <code>&lt;T&gt;</code> generic parameter means the hook works for any type — <code>useLocalStorage&lt;Column[]&gt;</code> for Kanban columns, <code>useLocalStorage&lt;string&gt;</code> for a theme preference, etc. TypeScript infers <code>T</code> from the initial value, so callers get full type safety without writing the type explicitly.</p>
+    </div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-q">Q7. What is a string literal union type and why is it better than a plain string? <span class="qa-tag badge-indigo">Types</span></div>
+    <div class="qa-a">
+      <pre><code>// Plain string — no safety
+type Priority = string; // 'urgent', 'asap', 'whenever' — all valid, bugs lurk
+
+// String literal union — compile-time safety
+type Priority = 'high' | 'medium' | 'low';
+// task.priority = 'urgent' → ❌ TypeScript error at compile time</code></pre>
+      <p>With a union type, TypeScript exhausts all possibilities. In a switch statement, if you add a new priority value later but forget to handle it in the UI, TypeScript's <code>never</code> type can catch it.</p>
+    </div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-q">Q8. What does Omit&lt;Task, 'id' | 'createdAt'&gt; mean and why did you use it? <span class="qa-tag badge-indigo">Utility Types</span></div>
+    <div class="qa-a">
+      <pre><code>function handleSave(data: Omit&lt;Task, 'id' | 'createdAt'&gt;) { ... }</code></pre>
+      <p><code>Omit&lt;T, K&gt;</code> creates a new type by removing keys from an existing type. Here, the modal form collects all Task fields <em>except</em> <code>id</code> and <code>createdAt</code> — those are generated server-side (or by <code>crypto.randomUUID()</code> and <code>Date.now()</code>). Using <code>Omit</code> avoids duplicating the Task interface and keeps it DRY.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="qa-perf">
+  <h2>🎯 Interview Questions — Performance</h2>
+
+  <div class="qa-item">
+    <div class="qa-q">Q9. How did you build charts without a library? Is that a performance concern? <span class="qa-tag badge-green">Performance</span></div>
+    <div class="qa-a">
+      <p>Each chart is a React component that renders an <code>&lt;svg&gt;</code> element. The data points are mapped to (x, y) pixel coordinates using linear interpolation. SVG is rendered by the browser's GPU-accelerated compositor — it's actually very performant for static/semi-static charts.</p>
+      <p><strong>Performance comparison:</strong> Chart.js bundle = ~200KB. My custom SVG charts = 0KB extra. For a portfolio dashboard with mock data, the custom approach is strictly better. For real-time streaming data with 10,000+ points, a library would be justified.</p>
+    </div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-q">Q10. Why is the portfolio website faster than a typical React app? <span class="qa-tag badge-green">Performance</span></div>
+    <div class="qa-a">
+      <ul>
+        <li><strong>No JavaScript framework</strong> — zero React/Vite bundle (~170KB saved). Pure HTML loads in &lt;100ms.</li>
+        <li><strong>No npm dependencies</strong> — no package.json, no node_modules, no bundler.</li>
+        <li><strong>CSS animations over JS animations</strong> — CSS transforms run on the GPU compositor thread, never block the main thread.</li>
+        <li><strong>IntersectionObserver</strong> — scroll detection with zero scroll event listeners (which can cause jank at 60fps).</li>
+        <li>Lighthouse score typically 95–100 for plain HTML sites like this.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="qa-api">
+  <h2>🎯 Interview Questions — APIs &amp; Async State</h2>
+
+  <div class="qa-item">
+    <div class="qa-q">Q11. Why did you use Promise.all instead of two separate awaits in DevFinder? <span class="qa-tag badge-purple">Async</span></div>
+    <div class="qa-a">
+      <pre><code>// ✗ Sequential — 200ms + 200ms = 400ms
+const user = await fetch('/users/john').then(r =&gt; r.json());
+const repos = await fetch('/users/john/repos').then(r =&gt; r.json());
+
+// ✓ Parallel — max(200ms, 200ms) = 200ms (2x faster)
+const [userRes, reposRes] = await Promise.all([
+  fetch('/users/john'),
+  fetch('/users/john/repos'),
+]);</code></pre>
+      <p>Both requests are independent — the repos endpoint doesn't need the user response to start. <code>Promise.all</code> fires them simultaneously and resolves when both complete. Sequential awaits waste time waiting for the first request before starting the second.</p>
+    </div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-q">Q12. How did you handle API errors in DevFinder? What is the difference between a 404 and a 403? <span class="qa-tag badge-purple">Error Handling</span></div>
+    <div class="qa-a">
+      <ul>
+        <li><strong>404 Not Found</strong> → User doesn't exist on GitHub. Message: "No user found with username X". This is an expected user error — the app recovers gracefully.</li>
+        <li><strong>403 Forbidden</strong> → GitHub API rate limit hit (60 unauthenticated requests/hour). Message: "Rate limit exceeded. Try again in a minute." This guides the user without confusing them.</li>
+        <li><strong>Network error (catch block)</strong> → No internet / fetch itself throws. Message: "Network error. Check your connection."</li>
+        <li><strong>Other non-OK</strong> → Generic "GitHub API error. Please try again."</li>
+      </ul>
+      <p>Each error type gets a specific, human-readable message. A generic "Something went wrong" message is unhelpful and considered bad UX.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="qa-design">
+  <h2>🎯 Interview Questions — Design Decisions</h2>
+
+  <div class="qa-item">
+    <div class="qa-q">Q13. Why did you build everything without a UI library like Material UI or Tailwind? <span class="qa-tag badge-amber">Architecture</span></div>
+    <div class="qa-a">
+      <p>Three reasons:</p>
+      <ul>
+        <li><strong>Demonstrates depth</strong> — Anyone can use a component library. Hand-crafting components proves you understand CSS flexbox, CSS variables, animation, and responsive design at a fundamental level.</li>
+        <li><strong>Bundle size</strong> — MUI v5 adds ~100KB to the bundle. Zero UI library = zero overhead. This matters for Core Web Vitals.</li>
+        <li><strong>Portfolio differentiator</strong> — Most portfolios look identical because they use the same UI kit. A custom design stands out in a recruiter's inbox.</li>
+      </ul>
+      <p>In a professional project, I would absolutely use a design system (as I do at Newgen with MUI v5). The choice here is intentional — to show I can work at both levels.</p>
+    </div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-q">Q14. How does your theme system work? Could it scale to support a user-defined colour scheme? <span class="qa-tag badge-amber">CSS</span></div>
+    <div class="qa-a">
+      <pre><code>/* The entire theme lives in CSS variables */
+.app.dark  { --bg: #0f1117; --accent: #6366f1; }
+.app.light { --bg: #ffffff; --accent: #4f46e5; }
+
+/* Every component references variables, never hardcoded colours */
+.card { background: var(--bg2); border: 1px solid var(--border); }</code></pre>
+      <p>Yes — to support user-defined colours, you'd just read the user's preference and set <code>document.documentElement.style.setProperty('--accent', userColour)</code>. Because every component uses <code>var(--accent)</code>, the entire UI updates instantly. This is how VS Code's theme system works.</p>
+    </div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-q">Q15. How is data structured in NovaDash? Why is all data in a single data.ts file? <span class="qa-tag badge-indigo">Architecture</span></div>
+    <div class="qa-a">
+      <p>All mock data arrays live in <code>data.ts</code> and all TypeScript interfaces in <code>types.ts</code>. This is the <strong>separation of concerns</strong> principle:</p>
+      <ul>
+        <li>Components don't know about data shape — they receive typed props.</li>
+        <li>Pages receive pre-filtered data — they don't know about the search state.</li>
+        <li>In production, you'd replace <code>data.ts</code> with API calls and nothing else changes — because the types are already defined and the components are already typed.</li>
+      </ul>
+      <p>This mirrors how real production codebases work — separate data layer, separate UI layer.</p>
+    </div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-q">Q16. Your search clears when you switch pages. Is that intentional? Why? <span class="qa-tag badge-indigo">UX</span></div>
+    <div class="qa-a">
+      <pre><code>// App.tsx — useEffect resets search on page navigation
+useEffect(() =&gt; { setSearch(''); }, [page]);</code></pre>
+      <p>Yes, intentional. This is standard UX behaviour — if you search for "Aarav" in Transactions and switch to Users, you don't want the Users page to also be filtered for "Aarav" because those are completely different data sets. Each page's search context is independent. Gmail, Notion, and Linear all reset filters when you switch views.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="qa-deploy">
+  <h2>🎯 Interview Questions — Deployment &amp; CI/CD</h2>
+
+  <div class="qa-item">
+    <div class="qa-q">Q17. Explain the full deployment pipeline for your portfolio. What happens when you push to main? <span class="qa-tag badge-green">DevOps</span></div>
+    <div class="qa-a">
+      <ol style="padding-left:1.2rem">
+        <li>Developer runs <code>git push origin main</code></li>
+        <li>GitHub receives the push and checks for workflow files in <code>.github/workflows/</code></li>
+        <li>GitHub Actions spins up an ubuntu runner and executes <code>deploy.yml</code></li>
+        <li><code>actions/checkout@v4</code> pulls the latest commit to the runner</li>
+        <li><code>actions/configure-pages@v5</code> sets up the Pages environment</li>
+        <li><code>actions/upload-pages-artifact@v3</code> packages the entire repo as an artifact</li>
+        <li><code>actions/deploy-pages@v4</code> pushes to GitHub's CDN (~180 edge nodes globally)</li>
+        <li>GitHub sends a deployment event — the green checkmark appears on the commit</li>
+        <li>Site is live at <code>parthlashkari.github.io/portfolio/</code> — total time: ~30 seconds</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-q">Q18. How does Vercel auto-deploy work for your React projects? <span class="qa-tag badge-green">DevOps</span></div>
+    <div class="qa-a">
+      <ul>
+        <li>Vercel monitors the connected GitHub repo via a webhook.</li>
+        <li>On every push to <code>main</code>, Vercel clones the repo on its build servers.</li>
+        <li>It runs <code>npm install</code> then <code>npm run build</code> (which runs <code>tsc -b &amp;&amp; vite build</code>).</li>
+        <li>Vite outputs a <code>dist/</code> folder with optimized JS (code-split, tree-shaken) and CSS.</li>
+        <li>Vercel deploys <code>dist/</code> to its edge network (~100 CDN nodes globally).</li>
+        <li>HTTPS, caching headers, and brotli compression are configured automatically.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-q">Q19. What is the .nojekyll file in your portfolio repo? Why is it needed? <span class="qa-tag badge-green">GitHub Pages</span></div>
+    <div class="qa-a">
+      <p>GitHub Pages runs Jekyll (a static site generator) by default before serving your files. Jekyll ignores directories and files starting with an underscore (<code>_</code>) — this would cause problems if your build output had <code>_app/</code> or <code>_next/</code> folders (like Next.js generates).</p>
+      <p>A <code>.nojekyll</code> empty file at the root tells GitHub Pages to skip the Jekyll build step entirely and serve files directly. For pure HTML sites, it ensures nothing gets accidentally processed or excluded.</p>
+    </div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-q">Q20. What is vite-env.d.ts and why did it fix your build? <span class="qa-tag badge-indigo">Vite + TS</span></div>
+    <div class="qa-a">
+      <pre><code>/// &lt;reference types="vite/client" /&gt;</code></pre>
+      <p>This triple-slash directive adds Vite's type declarations to the TypeScript project. Without it, TypeScript doesn't know that importing a <code>.css</code> file is valid (it's a Vite-specific transform), so it throws: <code>"Cannot find module './App.css'"</code>.</p>
+      <p>Vite's type declarations include: CSS/SCSS module types, <code>import.meta.env</code> types, glob import types, and asset URL types. Every Vite + TypeScript project needs this file.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ──────────────────────────────────────────────
+     CHEATSHEET
+────────────────────────────────────────────── -->
+<section class="section" id="cheatsheet">
+  <h2>⚡ Quick Answer Cheatsheet</h2>
+  <p>For rapid-fire technical questions, use these concise answers:</p>
+
+  <div class="bp-grid">
+    <div class="bp-item"><div class="bp-item-title">useState vs useRef</div><p><code>useState</code> → re-renders on change. <code>useRef</code> → persists value without re-render. Use useRef for DOM refs or timers.</p></div>
+    <div class="bp-item"><div class="bp-item-title">useMemo vs useCallback</div><p><code>useMemo</code> caches a computed <em>value</em>. <code>useCallback</code> caches a <em>function</em>. Both accept dependency arrays.</p></div>
+    <div class="bp-item"><div class="bp-item-title">Why Vite over CRA?</div><p>Vite uses native ESM + esbuild. Dev start: ~300ms vs 30s+. HMR &lt;100ms. No webpack config overhead.</p></div>
+    <div class="bp-item"><div class="bp-item-title">What is tree-shaking?</div><p>Bundler removes unused exports at build time. Vite/Rollup do this automatically. Reduces final bundle size.</p></div>
+    <div class="bp-item"><div class="bp-item-title">CSS Variables vs Props</div><p>CSS vars cascade through DOM without JS — zero React overhead. Props require component re-renders. Vars are better for theming.</p></div>
+    <div class="bp-item"><div class="bp-item-title">Why TypeScript strict?</div><p>Catches null access, implicit any, missing returns at compile time. Prevents entire classes of runtime bugs.</p></div>
+    <div class="bp-item"><div class="bp-item-title">Controlled vs Uncontrolled</div><p>Controlled = form value in React state (recommended). Uncontrolled = value in DOM via <code>useRef</code>. Controlled is predictable and testable.</p></div>
+    <div class="bp-item"><div class="bp-item-title">What is lifting state up?</div><p>Moving shared state to the closest common ancestor so siblings can communicate. Used in TaskFlow for modal state.</p></div>
+    <div class="bp-item"><div class="bp-item-title">Memo vs useMemo</div><p><code>React.memo</code> wraps a <em>component</em> — skips re-render if props unchanged. <code>useMemo</code> memoizes a value <em>inside</em> a component.</p></div>
+    <div class="bp-item"><div class="bp-item-title">Why encodeURIComponent?</div><p>Encodes special chars in user input before using in URLs. Prevents URL injection, handles spaces, slashes, and non-ASCII chars safely.</p></div>
+  </div>
+
+  <h3 style="margin-top:2.5rem">Key Numbers to Remember</h3>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1rem">
+    <div class="hero-stat"><div class="hero-stat-val">168KB</div><div class="hero-stat-lbl">NovaDash bundle (gzip: 53KB)</div></div>
+    <div class="hero-stat"><div class="hero-stat-val">5</div><div class="hero-stat-lbl">Pages in NovaDash</div></div>
+    <div class="hero-stat"><div class="hero-stat-val">React 18.3</div><div class="hero-stat-lbl">All 3 projects use concurrent features</div></div>
+    <div class="hero-stat"><div class="hero-stat-val">0</div><div class="hero-stat-lbl">UI libraries (MUI/Tailwind/Antd)</div></div>
+    <div class="hero-stat"><div class="hero-stat-val">&lt;30s</div><div class="hero-stat-lbl">Vercel deploy time after git push</div></div>
+    <div class="hero-stat"><div class="hero-stat-val">60/hr</div><div class="hero-stat-lbl">GitHub API rate limit (unauthenticated)</div></div>
+  </div>
+
+  <div class="tip-box" style="margin-top:2.5rem">
+    <div class="tip-label">🎯 Final Interview Tip</div>
+    <p>When asked about any feature, follow the <strong>WHY → WHAT → HOW</strong> pattern: Start with why the decision was made (e.g., "I wanted to avoid a 200KB chart library"), then what it does (custom SVG charts), then how it works (linear interpolation mapping values to pixel coords). Interviewers respond best when they understand your reasoning before the implementation.</p>
+  </div>
+</section>
+
+<div style="height:4rem"></div>
+</main>
+</div>
+
+<!-- Download Button -->
+<div class="download-bar">
+  <button class="dl-btn" onclick="window.print()">⬇ Save as PDF</button>
+</div>
+
+<script>
+  // Highlight active section in sidebar
+  const sections = document.querySelectorAll('section[id], div[id]');
+  const links = document.querySelectorAll('.toc-section a');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.toc-section a[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { threshold: 0.3 });
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
