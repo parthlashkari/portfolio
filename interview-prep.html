@@ -142,6 +142,11 @@
     <a href="#qa-api">APIs & State</a>
     <a href="#qa-design">Design Decisions</a>
     <a href="#qa-deploy">Deployment & CI/CD</a>
+    <a href="#qa-redux">Redux Toolkit</a>
+    <a href="#qa-nextjs">Next.js &amp; SSR</a>
+    <a href="#qa-lead">Leadership &amp; Experience</a>
+    <a href="#qa-system">System Design</a>
+    <a href="#qa-advanced">Advanced React/TS</a>
     <a href="#cheatsheet">Quick Cheatsheet</a>
   </div>
 
@@ -161,7 +166,7 @@
 <!-- HERO -->
 <div class="hero" id="summary">
   <h1>Portfolio & Projects<br/>Interview Prep Guide</h1>
-  <p style="color:var(--text2);margin-top:.75rem;font-size:1rem">Everything you need to explain your portfolio and 4 React projects in any frontend interview — code walkthrough, best practices, and 30+ Q&amp;A.</p>
+  <p style="color:var(--text2);margin-top:.75rem;font-size:1rem">Everything you need to explain your portfolio and 4 React projects in any frontend interview — code walkthrough, best practices, and 40+ Q&amp;A.</p>
   <div class="hero-meta">
     <div class="hero-stat"><div class="hero-stat-val">5</div><div class="hero-stat-lbl">Live Projects</div></div>
     <div class="hero-stat"><div class="hero-stat-val">React 18</div><div class="hero-stat-lbl">Core Framework</div></div>
@@ -1068,7 +1073,7 @@ useEffect(() =&gt; { setSearch(''); }, [page]);</code></pre>
   <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1rem">
     <div class="hero-stat"><div class="hero-stat-val">168KB</div><div class="hero-stat-lbl">NovaDash bundle (gzip: 53KB)</div></div>
     <div class="hero-stat"><div class="hero-stat-val">5</div><div class="hero-stat-lbl">Pages in NovaDash</div></div>
-    <div class="hero-stat"><div class="hero-stat-val">React 18.3</div><div class="hero-stat-lbl">All 3 projects use concurrent features</div></div>
+    <div class="hero-stat"><div class="hero-stat-val">React 18.3</div><div class="hero-stat-lbl">All 4 projects use concurrent features</div></div>
     <div class="hero-stat"><div class="hero-stat-val">0</div><div class="hero-stat-lbl">UI libraries (MUI/Tailwind/Antd)</div></div>
     <div class="hero-stat"><div class="hero-stat-val">&lt;30s</div><div class="hero-stat-lbl">Vercel deploy time after git push</div></div>
     <div class="hero-stat"><div class="hero-stat-val">60/hr</div><div class="hero-stat-lbl">GitHub API rate limit (unauthenticated)</div></div>
@@ -1080,7 +1085,308 @@ useEffect(() =&gt; { setSearch(''); }, [page]);</code></pre>
   </div>
 </section>
 
-<div style="height:4rem"></div>
+
+<!-- ── Q21–Q40 ───────────────────────────────── -->
+<section class="section" id="qa-redux">
+  <h2>&#127959; Redux Toolkit &amp; State Management</h2>
+
+  <div class="qa-item">
+    <div class="qa-q">Q21. Why Redux Toolkit over plain Redux? What problems does it solve? <span class="qa-tag badge-indigo">Redux</span></div>
+    <div class="qa-a">
+      <p>Plain Redux required 3–4 files per feature (actions, action creators, reducer, constants). RTK solves this with:</p>
+      <ul>
+        <li><strong>createSlice</strong> — actions + reducer in one place. Immer is built in so you can "mutate" state safely inside reducers.</li>
+        <li><strong>configureStore</strong> — auto-wires Redux DevTools, thunk middleware, and serializability checks.</li>
+        <li><strong>createAsyncThunk</strong> — handles pending/fulfilled/rejected lifecycle with zero boilerplate.</li>
+      </ul>
+      <pre><code>const userSlice = createSlice({
+  name: 'user',
+  initialState: { list: [], loading: false },
+  reducers: {
+    addUser(state, action) { state.list.push(action.payload); } // Immer — safe mutation
+  },
+  extraReducers: builder => {
+    builder
+      .addCase(fetchUsers.pending,   state => { state.loading = true; })
+      .addCase(fetchUsers.fulfilled, (state, action) => {
+        state.loading = false;
+        state.list = action.payload;
+      });
+  }
+});</code></pre>
+    </div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-q">Q22. How did you eliminate redundant API calls using Redux Toolkit? <span class="qa-tag badge-indigo">Redux</span></div>
+    <div class="qa-a">
+      <ul>
+        <li><strong>Cached selectors</strong> — <code>createSelector</code> memoises derived data so components don't recompute on unrelated state changes.</li>
+        <li><strong>Request deduplication</strong> — check <code>state.loading</code> before dispatching a thunk. If already fetching, return early.</li>
+        <li><strong>RTK Query</strong> — built-in caching with <code>keepUnusedDataFor</code> prevents refetching the same endpoint within a configurable TTL.</li>
+      </ul>
+      <pre><code>export const fetchFormData = createAsyncThunk(
+  'forms/fetch',
+  async (_, { getState, rejectWithValue }) => {
+    if (getState().forms.loading) return rejectWithValue('already loading');
+    const res = await api.get('/forms');
+    return res.data;
+  }
+);</code></pre>
+    </div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-q">Q23. When would you use React Context over Redux Toolkit? <span class="qa-tag badge-indigo">State</span></div>
+    <div class="qa-a">
+      <ul>
+        <li><strong>Context</strong> — low-frequency, low-complexity global state: theme, locale, current user. Avoids slice boilerplate for state that rarely changes.</li>
+        <li><strong>Redux Toolkit</strong> — high-frequency updates, complex derived data with <code>createSelector</code>, or when DevTools time-travel debugging matters.</li>
+        <li><strong>Rule of thumb</strong>: if the state changes &gt; once per second or requires cross-slice computation, use RTK. Otherwise Context + <code>useReducer</code> is sufficient.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="qa-nextjs">
+  <h2>&#9881; Next.js &amp; SSR</h2>
+
+  <div class="qa-item">
+    <div class="qa-q">Q24. When do you choose SSR vs SSG vs CSR in Next.js, and why? <span class="qa-tag badge-amber">Next.js</span></div>
+    <div class="qa-a">
+      <ul>
+        <li><strong>SSR (getServerSideProps)</strong> — user-specific or frequently changing data (auth-gated dashboard). Rendered fresh per request.</li>
+        <li><strong>SSG (getStaticProps)</strong> — data changes infrequently (docs, landing pages). Built once at deploy time — fastest TTFB.</li>
+        <li><strong>CSR</strong> — highly interactive UI behind auth (form editors) where SEO is irrelevant and real-time interaction matters more than initial load.</li>
+      </ul>
+      <p>Professionally, I used SSR for performance-critical modules where both SEO and initial load metrics mattered, improving LCP through server-rendered HTML delivery.</p>
+    </div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-q">Q25. What is hydration? What causes hydration errors and how do you fix them? <span class="qa-tag badge-amber">Next.js</span></div>
+    <div class="qa-a">
+      <p><strong>Hydration</strong> is React attaching event listeners to the server-rendered HTML. It expects the client tree to exactly match the server HTML. Mismatches cause errors.</p>
+      <p><strong>Common causes:</strong> <code>typeof window</code> checks, <code>Date.now()</code>/<code>Math.random()</code> in render, browser extensions injecting DOM nodes.</p>
+      <p><strong>Fix:</strong> Use <code>suppressHydrationWarning</code> for genuinely dynamic values, or move client-only code into a <code>useEffect</code> so it runs only after hydration.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="qa-lead">
+  <h2>&#127942; Leadership &amp; Professional Experience</h2>
+
+  <div class="qa-item">
+    <div class="qa-q">Q26. Tell me about a time you improved performance significantly. What was the impact? <span class="qa-tag badge-green">Behavioural</span></div>
+    <div class="qa-a">
+      <p><strong>Situation:</strong> The enterprise form platform had slow loads — every route change re-fetched data the app already had.</p>
+      <p><strong>Action:</strong> Architected a Redux Toolkit state layer with <code>createSelector</code> memoisation, request deduplication (check loading state before dispatch), and normalised store shape so related entities shared references.</p>
+      <p><strong>Result:</strong> ~35% reduction in perceived load time. Unnecessary network requests cut by ~60% on high-traffic pages.</p>
+      <div class="tip-box"><div class="tip-label">Interview Tip</div><p>Always frame as Situation &rarr; Action &rarr; Result with a concrete number.</p></div>
+    </div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-q">Q27. How did you approach migrating MUI v4 to v5/v7 without breaking production? <span class="qa-tag badge-green">Migration</span></div>
+    <div class="qa-a">
+      <ul>
+        <li><strong>Audit first</strong> — listed every MUI component used, grouped by complexity.</li>
+        <li><strong>Incremental migration</strong> — one component family at a time with a compatibility adapter during the transition.</li>
+        <li><strong>Breaking changes handled</strong>: <code>makeStyles</code> removed (replaced with <code>sx</code> prop / styled API), theme shape changed.</li>
+        <li><strong>Testing</strong> — ran the existing test suite after every batch; visual regression via screenshot diffs.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-q">Q28. How do you mentor junior developers? Give a concrete example. <span class="qa-tag badge-green">Leadership</span></div>
+    <div class="qa-a">
+      <ul>
+        <li><strong>Code reviews as teaching</strong> — never just "wrong". Explain <em>why</em> a pattern is problematic and suggest a better alternative with a short inline example.</li>
+        <li><strong>Pair debugging</strong> — ask questions instead of giving answers: "What do you think this <code>useEffect</code> dependency array means?"</li>
+        <li><strong>Concrete example</strong>: A junior was using <code>useEffect</code> to sync two pieces of state. Explained derived state vs synced state, showed why it causes double-renders, helped them refactor to a single <code>useMemo</code>. They now catch this pattern in their own code reviews.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-q">Q29. How do you handle disagreements with product/design about a technical decision? <span class="qa-tag badge-green">Leadership</span></div>
+    <div class="qa-a">
+      <ul>
+        <li>First, <strong>understand their constraint</strong> — is it timeline, user feedback, or a business requirement? Most disagreements dissolve when I understand the real driver.</li>
+        <li>Then <strong>propose a middle ground</strong>: "We can ship this in week 1 with a simpler implementation, revisit in sprint 3 to make it maintainable."</li>
+        <li>If there is a real technical risk (security, performance cliff, data loss), <strong>escalate with data</strong> — a Lighthouse score, profiler trace, or load test result — not just opinion.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-q">Q30. Walk me through your code review process. What do you look for? <span class="qa-tag badge-green">Leadership</span></div>
+    <div class="qa-a">
+      <p>In order of priority:</p>
+      <ul>
+        <li><strong>Correctness</strong> — does it do what it claims? Edge cases handled?</li>
+        <li><strong>Performance</strong> — unnecessary re-renders? Missing memoisation? O(n&#178;) loop that could be a Map lookup?</li>
+        <li><strong>Security</strong> — <code>dangerouslySetInnerHTML</code>? User input encoded before use in URLs or API calls?</li>
+        <li><strong>Readability</strong> — can a new team member understand this in 30 seconds?</li>
+        <li><strong>Tests</strong> — happy path tested? Error and empty states covered?</li>
+      </ul>
+      <p>I also leave <em>approving comments</em> — "Great use of early return here" — because review culture shapes how the whole team writes code.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="qa-system">
+  <h2>&#127775; System Design &amp; Architecture</h2>
+
+  <div class="qa-item">
+    <div class="qa-q">Q31. How would you architect a large React app from scratch for a team of 10 engineers? <span class="qa-tag badge-purple">Architecture</span></div>
+    <div class="qa-a">
+      <pre><code>src/
+&#9500;&#9472;&#9472; features/          # Feature-based modules (not layer-based)
+&#9474;   &#9500;&#9472;&#9472; auth/
+&#9474;   &#9492;&#9472;&#9472; dashboard/
+&#9474;       &#9500;&#9472;&#9472; components/   # UI for this feature only
+&#9474;       &#9500;&#9472;&#9472; hooks/
+&#9474;       &#9500;&#9472;&#9472; store/        # RTK slice + selectors
+&#9474;       &#9492;&#9472;&#9472; api.ts
+&#9500;&#9472;&#9472; shared/
+&#9474;   &#9500;&#9472;&#9472; components/   # Truly reusable (Button, Modal, Table)
+&#9474;   &#9492;&#9472;&#9472; hooks/        # useDebounce, useLocalStorage
+&#9492;&#9472;&#9472; app/             # Router, store config, providers</code></pre>
+      <p><strong>Key decisions:</strong> Feature folders prevent cross-feature import cycles. Shared components have zero business logic. Route-based code splitting via <code>React.lazy</code> keeps the initial bundle small.</p>
+    </div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-q">Q32. How do you implement RBAC in a React frontend? <span class="qa-tag badge-purple">Architecture</span></div>
+    <div class="qa-a">
+      <ul>
+        <li><strong>Route guard</strong> — <code>ProtectedRoute</code> checks the user's role before rendering a page. Redirects to 403 if unauthorised.</li>
+        <li><strong>Component gate</strong> — a <code>PermissionGuard</code> wraps buttons/sections only certain roles can see.</li>
+        <li><strong>Critical rule</strong> — always enforce on the server. Frontend RBAC is UX, not security. Never trust the client.</li>
+      </ul>
+      <pre><code>function ProtectedRoute({ roles, children }: { roles: string[]; children: ReactNode }) {
+  const { user } = useAuth();
+  if (!roles.includes(user.role)) return &lt;Navigate to="/403" /&gt;;
+  return &lt;&gt;{children}&lt;/&gt;;
+}</code></pre>
+    </div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-q">Q33. A React app is slow. Walk me through your optimisation process. <span class="qa-tag badge-purple">Performance</span></div>
+    <div class="qa-a">
+      <ol style="padding-left:1.2rem;color:var(--text2);font-size:.88rem;line-height:1.9">
+        <li><strong>Profile first</strong> — React DevTools Profiler &rarr; find components with highest render time.</li>
+        <li><strong>Unnecessary re-renders</strong> — parent passing a new object literal as a prop every render? Wrap with <code>useMemo</code>/<code>useCallback</code>.</li>
+        <li><strong>Bundle size</strong> — <code>npx vite-bundle-visualizer</code>. Large libraries imported without tree-shaking are a common culprit.</li>
+        <li><strong>Virtualise long lists</strong> — 1000+ rows need <code>react-window</code> or <code>react-virtual</code>. Only render visible rows.</li>
+        <li><strong>Lazy load routes</strong> — <code>React.lazy + Suspense</code> for code splitting. Cuts initial bundle by 30–60% on large apps.</li>
+        <li><strong>Measure, don't guess</strong> — use Lighthouse and Web Vitals to confirm the fix actually helped.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-q">Q34. How do you build accessible React components? <span class="qa-tag badge-purple">Accessibility</span></div>
+    <div class="qa-a">
+      <ul>
+        <li><strong>Semantic HTML first</strong> — <code>&lt;button&gt;</code> not <code>&lt;div onClick&gt;</code>. Proper landmark elements: <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;header&gt;</code>.</li>
+        <li><strong>ARIA only when needed</strong> — <code>aria-label</code> for icon-only buttons, <code>aria-live="polite"</code> for status messages, <code>role="dialog" aria-modal</code> for modals.</li>
+        <li><strong>Focus management</strong> — when a modal opens, move focus inside it. When it closes, return focus to the trigger. I built a <code>useFocusTrap</code> hook professionally for this.</li>
+        <li><strong>Keyboard navigation</strong> — every interactive element reachable via Tab. Dropdowns navigable with arrow keys.</li>
+        <li><strong>Colour contrast</strong> — 4.5:1 minimum ratio for normal text (WCAG AA).</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="qa-advanced">
+  <h2>&#9889; Advanced React &amp; TypeScript</h2>
+
+  <div class="qa-item">
+    <div class="qa-q">Q35. What TypeScript utility types do you use most and where? <span class="qa-tag badge-indigo">TypeScript</span></div>
+    <div class="qa-a">
+      <pre><code>Partial&lt;T&gt;      // All props optional — updateField(id, patch: Partial&lt;FormField&gt;)
+Required&lt;T&gt;     // All props required — for strict validation functions
+Pick&lt;T, K&gt;     // Subset — Pick&lt;User, 'id' | 'name'&gt; for display-only components
+Omit&lt;T, K&gt;    // Exclude — Omit&lt;FormField, 'id'&gt; for CreateFormField input type
+Record&lt;K, V&gt;   // Map — Record&lt;PageId, PageMeta&gt; for navigation config
+ReturnType&lt;T&gt;  // Infer return type — avoids duplicating types for helpers
+NonNullable&lt;T&gt; // Remove null | undefined — for values confirmed to exist</code></pre>
+      <p>Most used: <strong>Partial</strong> (patch updates), <strong>Omit</strong> (form vs entity shapes), <strong>Pick</strong> (component prop subsets).</p>
+    </div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-q">Q36. type vs interface in TypeScript — what's the difference and when do you use each? <span class="qa-tag badge-indigo">TypeScript</span></div>
+    <div class="qa-a">
+      <ul>
+        <li><strong>interface</strong> — supports declaration merging (useful for extending third-party types). Better for object shapes and class contracts.</li>
+        <li><strong>type</strong> — more flexible: union types (<code>type Status = 'active' | 'inactive'</code>), mapped types, conditional types, template literals.</li>
+        <li><strong>My rule</strong>: <code>interface</code> for object shapes / component props. <code>type</code> for unions, primitives, and computed types.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-q">Q37. How do you handle async errors in React — both API errors and render errors? <span class="qa-tag badge-amber">Error Handling</span></div>
+    <div class="qa-a">
+      <ul>
+        <li><strong>API errors</strong> — Axios interceptor maps status codes to messages, handles 401 (redirect to login), 403 (permission error), 5xx (retry UI). In RTK thunks, the <code>rejected</code> case stores the message in state.</li>
+        <li><strong>Render errors</strong> — <code>ErrorBoundary</code> class component wraps route-level trees. Catches exceptions during render and shows a fallback instead of crashing the whole app.</li>
+      </ul>
+      <pre><code>class ErrorBoundary extends Component {
+  state = { hasError: false };
+  static getDerivedStateFromError() { return { hasError: true }; }
+  componentDidCatch(error: Error, info: ErrorInfo) { logToMonitoring(error, info); }
+  render() {
+    return this.state.hasError ? &lt;ErrorFallback /&gt; : this.props.children;
+  }
+}</code></pre>
+    </div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-q">Q38. What is a custom hook? When should you extract one? <span class="qa-tag badge-indigo">Hooks</span></div>
+    <div class="qa-a">
+      <p>A custom hook is a function starting with <code>use</code> that encapsulates reusable stateful logic. Extract when:</p>
+      <ul>
+        <li>The same stateful logic appears in 2+ components.</li>
+        <li>A component has more than 2 <code>useState</code>/<code>useEffect</code> calls that belong together conceptually.</li>
+        <li>You want to unit-test logic independently of the component tree.</li>
+      </ul>
+      <p>I built several professionally: <code>useAutoSave</code> (debounced form saving), <code>useFocusTrap</code> (accessibility modal focus), <code>useLocalStorage</code> (typed persistent state — in TaskFlow). DevFinder's <code>useGitHub</code> encapsulates all API state + loading + error.</p>
+    </div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-q">Q39. React.memo — when does it help and when does it not? <span class="qa-tag badge-indigo">Performance</span></div>
+    <div class="qa-a">
+      <ul>
+        <li><strong>Helps when</strong>: A child is expensive to render AND its parent re-renders frequently with the same props for that child.</li>
+        <li><strong>Does NOT help when</strong>: Props include objects/arrays/functions created inline — they always fail shallow equality. You must also wrap props with <code>useMemo</code>/<code>useCallback</code> at the parent.</li>
+        <li><strong>Anti-pattern</strong>: Wrapping every component adds comparison overhead. Only use it where profiling shows a real benefit.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="qa-item">
+    <div class="qa-q">Q40. Where do you see yourself in 3 years? Why should we hire you? <span class="qa-tag badge-green">HR</span></div>
+    <div class="qa-a">
+      <p><strong>3-year goal:</strong> Principal/Staff Frontend Engineer or Frontend Architect — owning the technical vision for a frontend platform, defining standards, and enabling developer productivity through architecture decisions.</p>
+      <p><strong>Why hire me:</strong></p>
+      <ul>
+        <li>5.6+ years building what interviewers test — complex state management, reusable component libraries, performance optimisation — at production scale with real global clients.</li>
+        <li>I don't just write features. I improve the team around me through code reviews, mentorship, and standards.</li>
+        <li>The receipts: 35% load time improvement, 40% fewer type errors, 50+ production components, 3&times; highest company award.</li>
+        <li>Portfolio at <strong>parthlashkari.github.io/portfolio</strong> shows I build end-to-end — design, code, deploy, document — not just component-level tasks.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
 </main>
 </div>
 
