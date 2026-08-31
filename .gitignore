@@ -9,3 +9,9 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Node
+node_modules/
+dist/
+.env
+*.local
