@@ -131,6 +131,7 @@
     <a href="#novadash">NovaDash <span class="toc-badge badge-indigo">React+TS</span></a>
     <a href="#taskflow">TaskFlow <span class="toc-badge badge-amber">Kanban</span></a>
     <a href="#devfinder">DevFinder <span class="toc-badge badge-purple">API</span></a>
+    <a href="#formforge">FormForge <span class="toc-badge badge-indigo">Form Builder</span></a>
   </div>
 
   <div class="toc-section">
@@ -150,6 +151,7 @@
     <a href="https://nova-dash-ashy.vercel.app/" target="_blank" style="display:block;padding:.3rem .5rem;color:var(--indigo);font-size:.82rem;text-decoration:none">📊 NovaDash</a>
     <a href="https://taskflow-two-psi.vercel.app/" target="_blank" style="display:block;padding:.3rem .5rem;color:var(--indigo);font-size:.82rem;text-decoration:none">📋 TaskFlow</a>
     <a href="https://devfinder-dusky.vercel.app/" target="_blank" style="display:block;padding:.3rem .5rem;color:var(--indigo);font-size:.82rem;text-decoration:none">🔍 DevFinder</a>
+    <a href="https://formforge-demo.vercel.app/" target="_blank" style="display:block;padding:.3rem .5rem;color:var(--indigo);font-size:.82rem;text-decoration:none">📝 FormForge</a>
   </div>
 </nav>
 
@@ -159,11 +161,11 @@
 <!-- HERO -->
 <div class="hero" id="summary">
   <h1>Portfolio & Projects<br/>Interview Prep Guide</h1>
-  <p style="color:var(--text2);margin-top:.75rem;font-size:1rem">Everything you need to explain your portfolio and 3 React projects in any frontend interview — code walkthrough, best practices, and 30+ Q&amp;A.</p>
+  <p style="color:var(--text2);margin-top:.75rem;font-size:1rem">Everything you need to explain your portfolio and 4 React projects in any frontend interview — code walkthrough, best practices, and 30+ Q&amp;A.</p>
   <div class="hero-meta">
-    <div class="hero-stat"><div class="hero-stat-val">4</div><div class="hero-stat-lbl">Live Projects</div></div>
+    <div class="hero-stat"><div class="hero-stat-val">5</div><div class="hero-stat-lbl">Live Projects</div></div>
     <div class="hero-stat"><div class="hero-stat-val">React 18</div><div class="hero-stat-lbl">Core Framework</div></div>
-    <div class="hero-stat"><div class="hero-stat-val">TypeScript</div><div class="hero-stat-lbl">All 3 Projects</div></div>
+    <div class="hero-stat"><div class="hero-stat-val">TypeScript</div><div class="hero-stat-lbl">All 4 Projects</div></div>
     <div class="hero-stat"><div class="hero-stat-val">Zero</div><div class="hero-stat-lbl">UI Libraries Used</div></div>
     <div class="hero-stat"><div class="hero-stat-val">Vercel</div><div class="hero-stat-lbl">Deployment Platform</div></div>
   </div>
@@ -188,7 +190,7 @@
     </div>
   </div>
 
-  <h3>React Projects (NovaDash / TaskFlow / DevFinder)</h3>
+  <h3>React Projects (NovaDash / TaskFlow / DevFinder / FormForge)</h3>
   <div class="flow">
     <div class="flow-row">
       <div class="flow-box">src/ TypeScript<br/><small style="color:var(--text2)">React 18 + TSX</small></div>
@@ -687,9 +689,98 @@ export interface GithubRepo {
 </section>
 
 <!-- ──────────────────────────────────────────────
-     INTERVIEW Q&A
+     FORMFORGE
 ────────────────────────────────────────────── -->
-<section class="section" id="qa-react">
+<section class="section" id="formforge">
+  <h2>📝 FormForge — Enterprise Form Builder &amp; Workflow Platform</h2>
+
+  <div class="project-card">
+    <div class="project-card-header">
+      <div class="project-icon" style="background:rgba(124,58,237,.12)">📝</div>
+      <div>
+        <div class="project-title">FormForge — Enterprise Form Builder &amp; Workflow Automation</div>
+        <a class="project-url" href="https://formforge-demo.vercel.app/" target="_blank">formforge-demo.vercel.app</a>
+      </div>
+    </div>
+    <div class="stack-pills">
+      <span class="pill">React 18</span><span class="pill">TypeScript</span><span class="pill">Vite</span>
+      <span class="pill">HTML5 DnD</span><span class="pill">CSS Variables</span><span class="pill">RBAC</span>
+    </div>
+    <p>An enterprise-grade form builder and workflow automation platform inspired by professional experience leading similar systems. Features a 3-panel interactive form builder (drag-to-reorder, live preview), form template library, submissions management with CSV export, workflow automation rule visualisation, and role-based access control settings.</p>
+  </div>
+
+  <h3>1. Interactive Form Builder — 3-Panel Architecture</h3>
+  <p>The Builder page is the centrepiece of FormForge. It uses a classic 3-panel layout: <strong>Field Palette</strong> (left) → <strong>Form Canvas</strong> (centre) → <strong>Properties Panel</strong> (right). All state lives in a single <code class="inline-code">fields: FormField[]</code> array in the parent component.</p>
+
+  <pre><code>// types.ts — FormField type
+export type FieldType = 'text' | 'number' | 'email' | 'date' | 'dropdown' | 'checkbox' | 'radio' | 'textarea';
+
+export interface FormField {
+  id: string;
+  type: FieldType;
+  label: string;
+  placeholder: string;
+  required: boolean;
+  options: string[];  // only used by dropdown / radio / checkbox
+}</code></pre>
+
+  <h3>2. Drag-and-Drop Reordering — HTML5 DnD on State Array</h3>
+  <pre><code>// BuilderPage.tsx — live reorder via splice on a spread copy
+const handleDragOver = (e: React.DragEvent, targetId: string) =&gt; {
+  e.preventDefault();
+  if (!draggingId || draggingId === targetId) return;
+
+  setFields(prev =&gt; {
+    const arr     = [...prev];                        // spread → new array (immutable)
+    const fromIdx = arr.findIndex(f =&gt; f.id === draggingId);
+    const toIdx   = arr.findIndex(f =&gt; f.id === targetId);
+    const [item]  = arr.splice(fromIdx, 1);           // remove from old position
+    arr.splice(toIdx, 0, item);                       // insert at new position
+    return arr;
+  });
+};</code></pre>
+
+  <div class="tip-box">
+    <div class="tip-label">Interview Tip — splice vs filter+insert</div>
+    <p><strong>splice</strong> on a spread copy is the idiomatic way to swap items in an immutable array update. Always spread first (<code>[...prev]</code>), then mutate the copy. This pattern is O(n) and preserves all other array items exactly.</p>
+  </div>
+
+  <h3>3. Generic updateField with Partial&lt;T&gt;</h3>
+  <p>Instead of one setter per field property, a single <code class="inline-code">updateField</code> function accepts a <code class="inline-code">Partial&lt;FormField&gt;</code> patch. TypeScript ensures only valid keys can be patched.</p>
+  <pre><code>const updateField = (id: string, patch: Partial&lt;FormField&gt;) =&gt; {
+  setFields(prev =&gt; prev.map(f =&gt; (f.id === id ? { ...f, ...patch } : f)));
+};
+
+// Usage: update just the label
+updateField(selectedId, { label: 'Full Name' });
+
+// Usage: toggle required
+updateField(selectedId, { required: !selected.required });</code></pre>
+
+  <h3>4. Live Preview Modal — click-outside pattern</h3>
+  <pre><code>// Overlay click closes modal; inner div stops propagation
+&lt;div className="modal-overlay" onClick={() =&gt; setShowPreview(false)}&gt;
+  &lt;div className="modal" onClick={e =&gt; e.stopPropagation()}&gt;
+    {/* form preview content */}
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+  <h3>5. Workflow Automation — TRIGGER → IF → THEN Pipeline</h3>
+  <p>Each automation rule is rendered as a 3-step visual pipeline. Toggle buttons use immutable array update pattern with <code class="inline-code">prev.map</code>:</p>
+  <pre><code>const toggle = (id: string) =&gt; {
+  setRules(prev =&gt;
+    prev.map(r =&gt; r.id === id
+      ? { ...r, status: r.status === 'active' ? 'paused' : 'active' }
+      : r
+    ),
+  );
+};</code></pre>
+
+  <div class="tip-box">
+    <div class="tip-label">Best Practices in FormForge</div>
+    <p><strong>1) Partial&lt;T&gt;</strong> — one updateField replaces N individual setters. <strong>2) HTML5 DnD with splice</strong> — live reorder on spread copy, no extra library. <strong>3) Click-outside modal</strong> — overlay onClick + stopPropagation on inner div. <strong>4) CSS data-theme attribute</strong> — <code>document.documentElement.setAttribute('data-theme', theme)</code> switches the entire theme via one CSS selector. <strong>5) TypeScript union for FieldType</strong> — exhaustive union makes invalid field types a compile error, not a runtime bug.</p>
+  </div>
+</section>
   <h2>🎯 Interview Questions — React &amp; Hooks</h2>
 
   <div class="qa-item">
