@@ -50,7 +50,7 @@ The hub page (`index.html`) lets visitors choose their preferred variant.
 - 🏢 Currently at **Newgen Software Technologies Ltd.**
 - ⚛️ Expert in **React.js, TypeScript, Next.js, Redux Toolkit**
 - 🏆 3× **Standing Ovation Award** recipient (company's highest recognition)
-- 📧 **parthlashkari1111@gmail.com**
+- 📧 **parthlashkari111@gmail.com**
 - 💼 **[linkedin.com/in/parth-lashkari-5b730a189](https://www.linkedin.com/in/parth-lashkari-5b730a189/)**
 
 
